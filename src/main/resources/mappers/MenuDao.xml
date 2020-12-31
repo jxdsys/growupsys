@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxd.growup.dao.IMenuDao">
+<mapper namespace="com.jxd.growup.dao.IMenutoDao">
 
+
+
+
+<!--    *获取学校功能模块的菜单栏-->
+<!--    List<Menuto> getSchMenu();-->
+    <select id="getSchMenu" resultType="Menuto">
+        select m1.*from menu m1 where mid = 2 or mid =4 order by mid
+    </select>
+
+<!--    /**-->
+<!--    *获取管理员功能模块的菜单栏-->
+<!--    * @return-->
+<!--    */-->
+<!--    List<Menuto> getAdminMenu();-->
+    <select id="getAdminMenu" resultType="Menuto">
+        select m1.*from menu m1 where mid = 0 or mid = 5 order by mid
+    </select>
 
 </mapper>

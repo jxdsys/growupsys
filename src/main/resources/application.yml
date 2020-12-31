@@ -9,4 +9,4 @@ mybatis-plus:
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: com.jxd.growup.model
 server:
-  port: 8089
+  port: 8087
