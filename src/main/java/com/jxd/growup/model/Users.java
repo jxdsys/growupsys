@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @Date 2020/12/31
  **/
 @TableName("user")
-public class User {
+public class Users {
     //用户id
     @TableId(type = IdType.AUTO)
     private int userId;
@@ -56,7 +56,7 @@ public class User {
     /**
      * 无参构造方法
      */
-    public User() {
+    public Users() {
     }
 
     /**
@@ -64,7 +64,7 @@ public class User {
      * @param name
      * @param password
      */
-    public User(String name, String password) {
+    public Users(String name, String password) {
         this.name = name;
         this.password = password;
     }
@@ -74,7 +74,7 @@ public class User {
      * @param name
      * @param role
      */
-    public User(String name, int role) {
+    public Users(String name, int role) {
         this.name = name;
         this.role = role;
     }
