@@ -1,5 +1,6 @@
 package com.jxd.growup.service;
 
+import com.jxd.growup.model.Users;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
@@ -10,5 +11,5 @@ public interface ILoginService {
      * @param password
      * @return
      */
-    String getLogin(@Param("name") String name, @Param("password") String password);
+    Users getLogin(String name, String password);
 }

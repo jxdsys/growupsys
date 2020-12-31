@@ -1,6 +1,7 @@
 package com.jxd.growup.service.impl;
 
 import com.jxd.growup.dao.ILoginDao;
+import com.jxd.growup.model.Users;
 import com.jxd.growup.service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class LoginServiceImpl implements ILoginService {
     @Autowired
     private ILoginDao loginDao;
     @Override
-    public String getLogin(String name, String password) {
+    public Users getLogin(String name, String password) {
         return loginDao.getLogin(name, password);
     }
 }
