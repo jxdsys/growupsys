@@ -6,13 +6,9 @@ import java.util.List;
 
 public interface IMenutoService {
     /**
-     *获取学校功能模块的菜单栏
+     *获取菜单栏
      * @return
      */
-    List<Menuto> getSchMenu();
-    /**
-     *获取管理员功能模块的菜单栏
-     * @return
-     */
-    List<Menuto> getAdminMenu();
+    List<Menuto> getMenu(int mid);
+
 }

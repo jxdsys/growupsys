@@ -16,10 +16,10 @@ public class MenutoController {
     @Autowired
     private IMenutoService menutoService;
 
-    @RequestMapping("/getSchMenu")
-    public Map<String,Object> getSchMenu(){
+    @RequestMapping("/getMenu")
+    public Map<String,Object> getSchMenu(int role){
         Map<String,Object> map = new HashMap<>();
-        map.put("data",menutoService.getSchMenu());
+        map.put("data",menutoService.getMenu(role));
         map.put("status","200");
         return map;
     }

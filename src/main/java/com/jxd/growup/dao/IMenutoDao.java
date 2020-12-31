@@ -6,16 +6,12 @@ import java.util.List;
 
 public interface IMenutoDao {
     /**
-     *获取学校功能模块的菜单栏
+     *获取菜单栏
      * @return
      */
-    List<Menuto> getSchMenu();
+    List<Menuto> getMenu(int mid);
 
-    /**
-     *获取管理员功能模块的菜单栏
-     * @return
-     */
-    List<Menuto> getAdminMenu();
+
 
 
 

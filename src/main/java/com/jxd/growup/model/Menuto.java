@@ -1,14 +1,10 @@
 package com.jxd.growup.model;
 
-import java.util.List;
-
 public class Menuto {
     private int id;
     private String title;
     private String path;
     private int mid;
-    //当前下
-    private List<Menuto> sList;
 
     public int getId() {
         return id;
@@ -40,13 +36,5 @@ public class Menuto {
 
     public void setMid(int mid) {
         this.mid = mid;
-    }
-
-    public List<Menuto> getSList() {
-        return sList;
-    }
-
-    public void setSList(List<Menuto> sList) {
-        this.sList = sList;
     }
 }

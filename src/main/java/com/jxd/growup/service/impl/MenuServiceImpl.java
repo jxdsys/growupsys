@@ -14,8 +14,9 @@ public class MenuServiceImpl implements IMenutoService {
     @Autowired
     private IMenutoDao menutoDao;
     @Override
-    public  List<Menuto> getSchMenu() {
-        return menutoDao.getSchMenu();
+    public  List<Menuto> getMenu(int mid) {
+        return menutoDao.getMenu(mid);
     }
+
 
 }
