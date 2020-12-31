@@ -6,13 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jxd-growup" />
         <module name="jxdgrowsys02" />
+        <module name="growupsys" />
+        <module name="jxd-growup" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="growupsys" options="-parameters" />
       <module name="jxd-growup" options="-parameters" />
       <module name="jxdgrowsys02" options="-parameters" />
     </option>

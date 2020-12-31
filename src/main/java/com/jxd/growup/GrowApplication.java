@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
+@MapperScan("com.jxd.growup.dao")
 public class GrowApplication {
     public static void main(String[] args) {
         SpringApplication.run(GrowApplication.class);
