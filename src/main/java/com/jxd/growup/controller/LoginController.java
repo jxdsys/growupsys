@@ -17,27 +17,20 @@ import java.util.Map;
  **/
 @RestController
 public class LoginController {
-
     @Autowired
     private ILoginService loginService;
-
-    /**
-     *  登录判断
-     * @param map 登录名和密码
-     * @return 权限
-     */
     @PostMapping("/login")
     public Map<String,Object> getLogin(@RequestBody Map<String,String> map){
-        String name = map.get("name") == null ? "": map.get("name");
+        String name = map.get("name") == null ? "" : map.get("name");
         String password = map.get("password") == null ? "" : map.get("password");
         Map<String,Object> mapLogin = new HashMap<>();
         if (loginService.getLogin(name,password) != null){
             mapLogin.put("data",loginService.getLogin(name,password));
-            mapLogin.put("status",200);
+            mapLogin.put("states","200");
             return mapLogin;
         }else {
             mapLogin.put("data","");
-            mapLogin.put("status","500");
+            mapLogin.put("states","500");
             return mapLogin;
         }
 
