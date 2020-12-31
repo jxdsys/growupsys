@@ -7,7 +7,7 @@ public class Menu {
     private String title;
     private String path;
     private int mid;
-    //当前下拉的子菜单
+    //当前下
     private List<Menu> sList;
 
     public int getId() {
