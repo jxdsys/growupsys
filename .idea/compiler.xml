@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jxd-growup" />
+        <module name="项目" />
         <module name="jxdgrowsys02" />
+        <module name="jxd-growup" />
       </profile>
     </annotationProcessing>
   </component>
@@ -15,6 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="jxd-growup" options="-parameters" />
       <module name="jxdgrowsys02" options="-parameters" />
+      <module name="项目" options="-parameters" />
     </option>
   </component>
 </project>
