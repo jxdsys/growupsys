@@ -1,6 +1,12 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/cy?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.24.44:3306/jxd_group?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 123456
+    password: root
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.jxd.growup.model
+server:
+  port: 8089

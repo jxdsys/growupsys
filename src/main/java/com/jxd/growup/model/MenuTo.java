@@ -1,14 +1,16 @@
 package com.jxd.growup.model;
 
-import java.util.List;
+import com.baomidou.mybatisplus.annotation.TableName;
 
-public class Menu {
+import java.util.List;
+@TableName("menu")
+public class MenuTo {
     private int id;
     private String title;
     private String path;
     private int mid;
     //当前下
-    private List<Menu> sList;
+    private List<MenuTo> sList;
 
     public int getId() {
         return id;
@@ -42,11 +44,11 @@ public class Menu {
         this.mid = mid;
     }
 
-    public List<Menu> getSList() {
+    public List<MenuTo> getSList() {
         return sList;
     }
 
-    public void setSList(List<Menu> sList) {
+    public void setSList(List<MenuTo> sList) {
         this.sList = sList;
     }
 }
