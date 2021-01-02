@@ -6,7 +6,7 @@
 
 
 
-<!--    *获取学校功能模块的菜单栏-->
+<!--    *获取动态的菜单栏-->
 <!--    List<Menuto> getMenu();-->
     <select id="getMenu" resultType="Menuto">
         select m1.*from menu m1 where mid = #{mid} or mid =4 order by mid
