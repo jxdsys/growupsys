@@ -1,14 +1,15 @@
 package com.jxd.growup.service;
 
+import com.jxd.growup.model.Users;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 public interface ILoginService {
     /**
-     *
-     * @param name
-     * @param password
+     *登录验证
+     * @param name 用户名
+     * @param password 密码
      * @return
      */
-    String getLogin(@Param("name") String name, @Param("password") String password);
+    Users getLogin(String name, String password);
 }

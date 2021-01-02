@@ -5,10 +5,10 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ILoginDao {
     /**
-     * 判断登录是否成功
+     * 判断登录是否成
      * @param name
      * @param password
      * @return
      */
-    String getLogin(@Param("name") String name,@Param("password") String password);
+    Users getLogin(@Param("name") String name,@Param("password") String password);
 }
