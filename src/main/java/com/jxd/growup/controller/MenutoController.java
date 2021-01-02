@@ -18,11 +18,17 @@ public class MenutoController {
     @Autowired
     private IMenutoService menutoService;
 
+    /**
+     * 动态获取菜单
+     * @param role
+     * @return
+     */
     @PostMapping("/getMenu")
-    public Map<String,Object> getSchMenu(@RequestBody List<String> list){
-       int role =Integer.parseInt(list.get(Integer.parseInt("role")));
+    public Map<String,Object> getSchMenu(@RequestBody String role){
+        System.out.println(role);
+        String[] role1 = role.split("=");
         Map<String,Object> map = new HashMap<>();
-        map.put("data",menutoService.getMenu(role));
+        map.put("data",menutoService.getMenu(Integer.parseInt(role1[0])));
         map.put("status","200");
         return map;
     }
