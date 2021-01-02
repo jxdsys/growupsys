@@ -22,6 +22,16 @@ public class DeptAppra {
     private String deptAppraName;
     //所在部门
     private int deptid;
+    //职务
+    private int jobid;
+
+    public int getJobid() {
+        return jobid;
+    }
+
+    public void setJobid(int jobid) {
+        this.jobid = jobid;
+    }
 
     public int getDeptAppraid() {
         return deptAppraid;
