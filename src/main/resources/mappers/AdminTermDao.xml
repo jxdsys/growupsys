@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IAdmintermDao">
+
+
+<!--    /**-->
+<!--    * 获取所有班期信息-->
+<!--    * @return-->
+<!--    */-->
+<!--    IPage<Map<String,Object>> getAllTerm(Page<Map<String,Object>> pages, @Param("tname") String tname);-->
+        <select id="getAllTerm" resultType="java.util.Map">
+         select t.term_id,t.term_name,t.flag,t.sch_appra_id,sch.sch_appra_name,sch.state
+        from term t left join schoolappra sch on t.sch_appra_id=sch.sch_appra_id
+        where t.term_name like concat('%',#{tname},'%')
+        </select>
+
+<!--    /**-->
+<!--    * 新增班期-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean addTerm();-->
+    <insert id="addTerm">
+       insert into term(term_name) VALUES (#{termname})
+    </insert>
+
+<!--    /**-->
+<!--    * 获取最后一个班期-->
+<!--    * @return-->
+<!--    */-->
+<!--    String getLastTerm();-->
+    <select id="getLastTerm" resultType="String">
+        select term_name from term order by term_id DESC LIMIT 1
+    </select>
+
+<!--    /**-->
+<!--    * 给该班期添加老师-->
+<!--    * @param schAppraId-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean updSchAppra(int schAppraId);-->
+    <update id="updSchAppra">
+        update term set sch_appra_id=#{schAppraId} where term_id=#{termid}
+    </update>
+<!--    /**-->
+<!--    * 学校评价人表中修改状态-->
+<!--    * @param schAppraId-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean updTermState(int schAppraId);-->
+    <update id="updTermState">
+        update schoolAppra set state="忙碌" where sch_appra_id=#{schAppraId}
+    </update>
+
+</mapper>
