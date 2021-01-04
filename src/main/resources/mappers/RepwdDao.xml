@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IRepwdDao">
+
+<!--    IPage<Map<String,Object>> getUsers(Page<Map<String,Object>> pages, @Param("uname") String uname);-->
+
+    <select id="getUsers" resultType="java.util.Map">
+        select userid,username,password,role
+        from users
+        where username like concat('%',#{uname},'%')
+    </select>
+
+<!--    boolean rePwd(int userid);-->
+    <update id="rePwd">
+        update users set password=123 where userid=#{userid}
+    </update>
+</mapper>
