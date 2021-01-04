@@ -52,6 +52,8 @@ public class DeptController {
     @PostMapping("/addDeptAppra")
     public String addDeptAppra(@RequestBody DeptAppra deptAppra){
         if(deptAppraService.saveOrUpdate(deptAppra)){
+            //新增的时候，同时开闭账号
+
             return "success";
         }else{
             return "fail";
