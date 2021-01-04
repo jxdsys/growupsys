@@ -4,9 +4,9 @@
 <mapper namespace="com.jxd.growup.dao.IDeptAppraDao">
 <!--    IPage<Map<String ,Object >> selectDeptAppraWithDeptAndJob(Page<Map<String ,Object >> page,
                                                               @Param("deptAppraName") String ename);-->
-    <select id="selectDeptAppraWithDeptAndJob" resultType="java.util.Map">
+<select id="selectDeptAppraWithDeptAndJob" resultType="java.util.Map">
         select dept_appraid,dept_appra_name,dname,job from dept_appra a
-        left join dept d on d.deptno =a.deptid
+        left join dept d on d.deptid =a.deptid
         left join job j on a.jobid=j.jobid
         where dept_appra_name like concat('%',#{deptAppraName},'%')
     </select>

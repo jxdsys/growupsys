@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IDeptDao">
+<!--    IPage<Map<String ,Object >> selectDeptList(Page<Map<String ,Object >> page,
+                                               @Param("dname") String ename);-->
+    <select id="selectDeptList" resultType="java.util.Map">
+        select deptid,dname,dcrib from dept
+        where dname like concat('%',#{dname},'%')
+    </select>
+</mapper>

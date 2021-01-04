@@ -13,7 +13,7 @@ public interface IDeptAppraDao extends BaseMapper<DeptAppra> {
     /**
      * 分页显示部门评价人信息
      * @param page 页码
-     * @param ename 条数
+     * @param ename 查询姓名
      * @return 数据
      */
     IPage<Map<String ,Object >> selectDeptAppraWithDeptAndJob(Page<Map<String ,Object >> page,

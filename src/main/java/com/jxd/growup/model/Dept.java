@@ -14,18 +14,18 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class Dept {
     //部门id
     @TableId(type = IdType.AUTO)
-    private int deptNo;
+    private int deptid;
     //部门名称
     private String dname;
     //部门描述
     private String dcrib;
 
-    public int getDeptNo() {
-        return deptNo;
-    }
 
-    public void setDeptNo(int deptNo) {
-        this.deptNo = deptNo;
+    public int getDeptid() {
+        return deptid;
+    }
+    public void setDeptid(int deptid) {
+        this.deptid = deptid;
     }
 
     public String getDname() {
