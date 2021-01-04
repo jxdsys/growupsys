@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.growup.dao.ILoginDao">
+
+
+<!--    /**-->
+<!--    *登录验证-->
+<!--    * @param name 用户名-->
+<!--    * @param password 密码-->
+<!--    * @return-->
+<!--    */-->
+<!--    Users getLogin(String name, String password);-->
+
     <select id="getLogin" resultType="com.jxd.growup.model.Users">
         select role from users where username = #{name} and password = #{password}
     </select>

@@ -10,7 +10,7 @@ public class Student {
     @TableId(type = IdType.AUTO)
     private int stuid;
     //学生姓名
-    private String stuName;
+    private String stuname;
     //学生性别
     private String sex;
     //民族
@@ -24,7 +24,7 @@ public class Student {
     //联系电话
     private String tel;
     //身份证号
-    private String cardId;
+    private String cardid;
     //毕业学校
     private String school;
     //专业
@@ -34,7 +34,7 @@ public class Student {
     //图片地址
     private String pictureAdd;
     //班期，外键
-    private int termId;
+    private int termid;
     //部门id，未毕业部门id为0
     private int deptno;
     //入职日期
@@ -48,12 +48,12 @@ public class Student {
         this.stuid = stuid;
     }
 
-    public String getStuName() {
-        return stuName;
+    public String getStuname() {
+        return stuname;
     }
 
-    public void setStuName(String stuName) {
-        this.stuName = stuName;
+    public void setStuname(String stuname) {
+        this.stuname = stuname;
     }
 
     public String getSex() {
@@ -104,13 +104,9 @@ public class Student {
         this.tel = tel;
     }
 
-    public String getCardId() {
-        return cardId;
-    }
 
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
-    }
+
+
 
     public String getSchool() {
         return school;
@@ -144,12 +140,21 @@ public class Student {
         this.pictureAdd = pictureAdd;
     }
 
-    public int getTermId() {
-        return termId;
+
+    public String getCardid() {
+        return cardid;
     }
 
-    public void setTermId(int termId) {
-        this.termId = termId;
+    public void setCardid(String cardid) {
+        this.cardid = cardid;
+    }
+
+    public int getTermid() {
+        return termid;
+    }
+
+    public void setTermid(int termid) {
+        this.termid = termid;
     }
 
     public int getDeptno() {
@@ -174,51 +179,31 @@ public class Student {
     public Student() {
     }
 
+
+
     /**
-     * 学生自己修改信息和展示学生信息时调用的构造方法
-     * @param stuid
-     * @param stuName
+     * 新增
+     * @param stuname
      * @param sex
-     * @param people
-     * @param birthday
-     * @param natives
-     * @param marry
-     * @param tel
-     * @param cardId
-     * @param school
-     * @param profession
-     * @param content
-     * @param pictureAdd
      * @param termId
-     * @param deptno
-     * @param hiredate
      */
-    public Student(int stuid, String stuName, String sex, String people, String birthday, String natives, String marry, String tel, String cardId, String school, String profession, String content, String pictureAdd, int termId, int deptno, String hiredate) {
-        this.stuid = stuid;
-        this.stuName = stuName;
+    public Student(String stuname, String sex, int termId) {
+        this.stuname = stuname;
         this.sex = sex;
-        this.people = people;
-        this.birthday = birthday;
-        this.natives = natives;
-        this.marry = marry;
-        this.tel = tel;
-        this.cardId = cardId;
-        this.school = school;
-        this.profession = profession;
-        this.content = content;
-        this.pictureAdd = pictureAdd;
-        this.termId = termId;
-        this.deptno = deptno;
-        this.hiredate = hiredate;
+        this.termid = termId;
     }
 
     /**
-     * 管理员新增学生时调用的构造方法
+     * 管理员修改
      * @param stuid
+     * @param stuname
+     * @param sex
      * @param termId
      */
-    public Student(int stuid, int termId) {
+    public Student(int stuid, String stuname, String sex, int termId) {
         this.stuid = stuid;
-        this.termId = termId;
+        this.stuname = stuname;
+        this.sex = sex;
+        this.termid = termId;
     }
 }

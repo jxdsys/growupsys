@@ -10,32 +10,32 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @Author nsj
  * @Date 2020/12/31
  **/
-@TableName("user")
+@TableName("users")
 public class Users {
     //用户id
     @TableId(type = IdType.AUTO)
-    private int userId;
+    private int userid;
     //用户名
-    private String name;
+    private String username;
     //用户密码
     private String password;
     //用户权限
     private int role;
 
-    public int getUserId() {
-        return userId;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -65,7 +65,7 @@ public class Users {
      * @param password
      */
     public Users(String name, String password) {
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 
@@ -75,7 +75,8 @@ public class Users {
      * @param role
      */
     public Users(String name, int role) {
-        this.name = name;
+        this.username = name;
         this.role = role;
     }
+
 }
