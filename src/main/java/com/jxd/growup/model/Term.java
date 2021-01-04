@@ -24,7 +24,7 @@ public class Term {
     @TableField("sch_appra_id")
     private String schAppraId;
     //班期是否结束的标志
-    private int flag;
+    private String flag;
 
     public int getTermId() {
         return termId;
@@ -50,11 +50,11 @@ public class Term {
         this.schAppraId = schAppraId;
     }
 
-    public int getFlag() {
+    public String getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
+    public void setFlag(String flag) {
         this.flag = flag;
     }
 
@@ -62,5 +62,11 @@ public class Term {
      * 默认的无参构造方法
      */
     public Term() {
+    }
+
+    public Term(int termId, String termName, String flag) {
+        this.termId = termId;
+        this.termName = termName;
+        this.flag = flag;
     }
 }
