@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-public interface IRepwdDao {
+public interface IUsersDao {
     /**
      * 获得users表中的数据
      * @return
