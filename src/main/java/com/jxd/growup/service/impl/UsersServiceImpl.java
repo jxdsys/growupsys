@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class UsersServiceImpl extends ServiceImpl<IRepwdDao,Users> implements IUsersService  {
+public class UsersServiceImpl extends ServiceImpl<IRepwdDao,Users> implements IUsersService {
     @Autowired
     private IRepwdDao repwdDao;
 
