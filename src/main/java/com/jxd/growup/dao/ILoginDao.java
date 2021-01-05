@@ -11,4 +11,5 @@ public interface ILoginDao {
      * @return
      */
     Users getLogin(@Param("name") String name,@Param("password") String password);
+
 }

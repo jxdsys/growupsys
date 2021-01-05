@@ -13,20 +13,13 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @ClassName UsersServiceImpl
- * @Description: TODO
- * @Author nsj
- * @Date 2021/1/4
- **/
 @Service
-public class UsersServiceImpl extends ServiceImpl<IUsersDao, Users> implements IUsersService {
-
+public class UsersServiceImpl extends ServiceImpl<IUsersDao, Users> implements IUsersService  {
     @Autowired
-    private IRepwdDao repwdDao;
+    IRepwdDao repwdDao;
 
     @Override
-    public Map<String, Object> getUsers(int limit, int page, String uname) {
+    public Map<String, Object> getUsers(int limit,int page,String uname) {
         //构造分页对象
         Page<Map<String,Object>> pages = new Page<>(page,limit);
         //将分页对象传递到dao层

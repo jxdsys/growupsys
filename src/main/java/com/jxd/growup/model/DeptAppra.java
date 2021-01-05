@@ -16,19 +16,18 @@ public class DeptAppra {
     //部门评价人id
     @TableId(type = IdType.AUTO)
     @TableField("dept_appraid")
+
     private int deptAppraid;
     //部门评价人姓名
     @TableField("dept_appra_name")
     private String deptAppraName;
     //所在部门
     private int deptid;
+    //职务
+    private int jobid;
 
-    public int getDeptAppraid() {
-        return deptAppraid;
-    }
-
-    public void setDeptAppraid(int deptAppraid) {
-        this.deptAppraid = deptAppraid;
+    public int getJobid() {
+        return jobid;
     }
 
     public String getDeptAppraName() {
@@ -38,6 +37,20 @@ public class DeptAppra {
     public void setDeptAppraName(String deptAppraName) {
         this.deptAppraName = deptAppraName;
     }
+
+    public void setJobid(int jobid) {
+        this.jobid = jobid;
+    }
+
+    public int getDeptAppraid() {
+        return deptAppraid;
+    }
+
+    public void setDeptAppraid(int deptAppraid) {
+        this.deptAppraid = deptAppraid;
+    }
+
+
 
     public int getDeptid() {
         return deptid;

@@ -25,7 +25,6 @@ public class MenutoController {
      */
     @PostMapping("/getMenu")
     public Map<String,Object> getSchMenu(@RequestBody String role){
-        //System.out.println(role);
         String[] role1 = role.split("=");
         Map<String,Object> map = new HashMap<>();
         map.put("data",menutoService.getMenu(Integer.parseInt(role1[0])));
