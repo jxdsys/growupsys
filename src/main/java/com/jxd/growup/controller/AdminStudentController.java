@@ -1,7 +1,9 @@
 package com.jxd.growup.controller;
 
 import com.jxd.growup.model.Student;
+import com.jxd.growup.model.Users;
 import com.jxd.growup.service.IStudentService;
+import com.jxd.growup.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,8 @@ import java.util.Map;
 public class AdminStudentController {
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private IUsersService usersService;
 
     /**
      * 查询学员信息
@@ -49,7 +53,10 @@ public class AdminStudentController {
         if (stuid == ""){
             Student student = new Student(stuName,sex,termId);
             boolean isAdd = studentService.save(student);
-            if (isAdd = true){
+            String username = usersService.selLastId()+"";
+            Users users = new Users(username,"123456",1);
+            boolean isUserAdd = usersService.save(users);
+            if (isAdd == true && isUserAdd == true){
                 return "success";
             }else {
                 return "fail";
@@ -76,6 +83,15 @@ public class AdminStudentController {
         if (studentService.removeByIds(arrstuids)){
             return "success";
         }else{
+            return "fail";
+        }
+    }
+    @PostMapping("/delStu")
+    public String delStu(@RequestBody String stuid){
+        int stuId = Integer.parseInt(stuid);
+        if (studentService.removeById(stuId)){
+            return "success";
+        }else {
             return "fail";
         }
     }

@@ -7,9 +7,11 @@ import com.jxd.growup.model.SchoolAppra;
 import com.jxd.growup.model.Term;
 import com.jxd.growup.service.IAdminTermService;
 import com.jxd.growup.service.ISchAppraService;
+import com.jxd.growup.service.ITermService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +21,15 @@ public class AdminTermController {
     private IAdminTermService adminTermService;
     @Autowired
     private ISchAppraService schAppraService;
+    @Autowired
+    private ITermService termService;
+    @PostMapping("/getAllTerm")
+    public Map<String,Object> getAllTerm(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",termService.listMaps());
+        map.put("code","200");
+        return map;
+    }
 
     @PostMapping("/getTerm")
     public Map<String, Object> getTerm(@RequestBody Map<String, String> queryMap) {

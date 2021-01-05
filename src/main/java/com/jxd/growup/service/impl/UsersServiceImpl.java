@@ -17,6 +17,8 @@ import java.util.Map;
 public class UsersServiceImpl extends ServiceImpl<IUsersDao, Users> implements IUsersService  {
     @Autowired
     IRepwdDao repwdDao;
+    @Autowired
+    private IUsersDao usersDao;
 
     @Override
     public Map<String, Object> getUsers(int limit,int page,String uname) {
@@ -35,5 +37,10 @@ public class UsersServiceImpl extends ServiceImpl<IUsersDao, Users> implements I
     @Override
     public boolean rePwd(int userid) {
         return repwdDao.rePwd(userid);
+    }
+
+    @Override
+    public int selLastId() {
+        return usersDao.selLastId();
     }
 }

@@ -48,25 +48,21 @@ public class LoginController {
         for (int i = 0; i < usernames.length; i++) {
             username = usernames[i]+username;
         }
-
-
-
         wrapper.eq("username",username);
         String password = usersService.getOne(wrapper).getPassword();
+        String userid = usersService.getOne(wrapper).getUserid() + "";
         Map<String,Object> map = new HashMap<>();
-        map.put("data",password);
+        map.put("password",password);
+        map.put("userid",userid);
         return map;
     }
     @PostMapping("/updPwd")
     public String updPwd(@RequestBody Map<String,Object> map ){
-        String username = map.get("username").toString();
+        String username = map.get("userName").toString();
         String password = map.get("pass").toString();
-        AbstractWrapper wrapper = new QueryWrapper();
-        Map<String,String> mapUser = new HashMap<>();
-        map.put("username",username);
-        map.put("password",password);
-        wrapper.allEq(mapUser);
-        if (usersService.update(wrapper)){
+        int userid = Integer.parseInt(map.get("userid").toString());
+        Users users = new Users(userid,username,password);
+        if (usersService.updateById(users)){
             return "success";
         }else {
             return  "fail";

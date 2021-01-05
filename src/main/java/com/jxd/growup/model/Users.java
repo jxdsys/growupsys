@@ -70,13 +70,27 @@ public class Users {
     }
 
     /**
-     * 新增员工时调用的构造方法
-     * @param name
+     * 新增用户时调用
+     * @param username
+     * @param password
      * @param role
      */
-    public Users(String name, int role) {
-        this.username = name;
+    public Users(String username, String password, int role) {
+        this.username = username;
+        this.password = password;
         this.role = role;
+    }
+
+    /**
+     * 修改密码
+     * @param userid
+     * @param username
+     * @param password
+     */
+    public Users(int userid, String username, String password) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
     }
 
 }
