@@ -10,3 +10,6 @@ mybatis-plus:
   type-aliases-package: com.jxd.growup.model
 server:
   port: 8087
+
+
+

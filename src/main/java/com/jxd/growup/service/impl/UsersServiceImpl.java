@@ -2,7 +2,10 @@ package com.jxd.growup.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.jxd.growup.dao.IRepwdDao;
 import com.jxd.growup.dao.IUsersDao;
+import com.jxd.growup.model.Users;
 import com.jxd.growup.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class UsersServiceImpl implements IUsersService {
+public class UsersServiceImpl extends ServiceImpl<IUsersDao, Users> implements IUsersService  {
     @Autowired
-    IUsersDao repwdDao;
+    IRepwdDao repwdDao;
 
     @Override
     public Map<String, Object> getUsers(int limit,int page,String uname) {

@@ -63,4 +63,10 @@ public class Term {
      */
     public Term() {
     }
+
+    public Term(int termId, String termName, String flag) {
+        this.termId = termId;
+        this.termName = termName;
+        this.flag = flag;
+    }
 }
