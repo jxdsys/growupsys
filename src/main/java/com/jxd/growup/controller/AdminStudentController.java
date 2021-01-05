@@ -2,6 +2,7 @@ package com.jxd.growup.controller;
 
 import com.jxd.growup.model.Student;
 import com.jxd.growup.service.IStudentService;
+import com.jxd.growup.service.ITermService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,16 @@ public class AdminStudentController {
         String page = map.get("page") == null ? "" :  map.get("page").toString();
         Map<String,Object> mapStus = studentService.selectStudentByPageAndTermId(stuName,termId,limit,page);
         return mapStus;
+    }
+
+    @Autowired
+    private ITermService termService;
+    @PostMapping("/getAllTerm")
+    public Map<String,Object> getAllTerm(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",termService.listMaps());
+        map.put("code","200");
+        return map;
     }
 
     /**
