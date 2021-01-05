@@ -20,6 +20,7 @@ public class AdminTermController {
     @Autowired
     private ISchAppraService schAppraService;
 
+//    @PostMapping("/getTerm")
     @PostMapping("/getTerm")
     public Map<String, Object> getTerm(@RequestBody Map<String, String> queryMap) {
         //获取每个查询参数

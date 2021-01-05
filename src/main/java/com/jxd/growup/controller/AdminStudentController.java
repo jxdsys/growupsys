@@ -36,7 +36,6 @@ public class AdminStudentController {
         return mapStus;
     }
 
-
     @Autowired
     private ITermService termService;
     @PostMapping("/getAllTerm")
