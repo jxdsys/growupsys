@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.InsertInfoSchtoDeptDao">
+<!--    /**-->
+<!--    * 根据学生id将部门id插入student表中-->
+<!--    * @param stuid-->
+<!--    * @param deptid-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean updStuSchtoDept(String stuid, String deptid);-->
+    <update id="updStuSchtoDept">
+        update student set jobid=7,deptno=#{deptid},hiredate=DATE_SUB(curdate(),INTERVAL 0 DAY)  where stuid=#{stuid}
+    </update>
+
+<!--    /**-->
+<!--    * 将部门评价人id,学生id插入dept_evolution_all表中-->
+<!--    * @param stuid-->
+<!--    * @param deptAppraid-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean insertStuSchtoDept(String stuid,String deptAppraid);-->
+    <insert id="insertStuSchtoDept">
+        insert into dept_evaluation_all(stuid,dept_appraid) values (#{stuid},#{deptAppraid})
+    </insert>
+
+<!--    /**-->
+<!--    * 将部门评价人id,学生id插入dept_evaluation_score表中-->
+<!--    * @param list-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean addByBatch(List<DeptEvaluationScore> list);-->
+    <insert id="addByBatch">
+        insert into dept_evaluation_score (stuid,dept_appraid,dateid)
+        VALUES
+        <foreach collection="list" item="deptEvaluationScore" separator=",">
+            (#{deptEvaluationScore.stuid},#{deptEvaluationScore.deptAppraid},#{deptEvaluationScore.dateid})
+        </foreach>
+    </insert>
+</mapper>

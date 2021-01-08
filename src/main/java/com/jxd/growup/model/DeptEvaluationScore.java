@@ -18,15 +18,17 @@ public class DeptEvaluationScore {
     @TableField("dept_scoreid")
     private int deptScoreId;
     //学生id
-    private int stuId;
+    private int stuid;
     //第几年评价的标志位
-    private int dateId;
+    private int dateid;
+    @TableField("dept_appraid")
+    private int deptAppraid;
     //能力分数
     private int ability;
     //积极性分数
     private int activity;
     //沟通交流分数
-    private int communcaton;
+    private int communication;
     //人品分数
     @TableField("moral_quality")
     private int moralQuality;
@@ -41,20 +43,28 @@ public class DeptEvaluationScore {
         this.deptScoreId = deptScoreId;
     }
 
-    public int getStuId() {
-        return stuId;
+    public int getStuid() {
+        return stuid;
     }
 
-    public void setStuId(int stuId) {
-        this.stuId = stuId;
+    public int getDeptAppraid() {
+        return deptAppraid;
     }
 
-    public int getDateId() {
-        return dateId;
+    public void setDeptAppraid(int deptAppraid) {
+        this.deptAppraid = deptAppraid;
     }
 
-    public void setDateId(int dateId) {
-        this.dateId = dateId;
+    public void setStuid(int stuid) {
+        this.stuid = stuid;
+    }
+
+    public int getDateid() {
+        return dateid;
+    }
+
+    public void setDateid(int dateid) {
+        this.dateid = dateid;
     }
 
     public int getAbility() {
@@ -73,12 +83,12 @@ public class DeptEvaluationScore {
         this.activity = activity;
     }
 
-    public int getCommuncaton() {
-        return communcaton;
+    public int getCommunication() {
+        return communication;
     }
 
-    public void setCommuncaton(int communcaton) {
-        this.communcaton = communcaton;
+    public void setCommunication(int communication) {
+        this.communication = communication;
     }
 
     public int getMoralQuality() {

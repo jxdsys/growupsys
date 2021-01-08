@@ -77,7 +77,7 @@
 <!--    */-->
 <!--    IPage<Map<String,Object>> getSchAllStuDistri(Page<Map<String,Object>> pages, @Param("stuname") String stuname,@Param("termid") int termId);-->
     <select id="getSchAllStuDistri" resultType="java.util.Map">
-            select s.stuname,s.sex,s.natives,s.school, sc.html,sc.oracle,sc.java,sc.js,sc.superjava,sc.l1,sc.apprascore,s.termid,sc.stuid
+            select s.stuname,s.sex,s.natives,s.school, sc.html,sc.oracle,sc.java,sc.js,sc.superjava,sc.l1,sc.apprascore,s.termid,s.stuid,s.deptno
              from student s left join score sc on s.stuid=sc.stuid
              left join term t on s.termid=t.term_id
               where s.stuname like '%' #{stuname} '%'

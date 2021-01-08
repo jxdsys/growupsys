@@ -3,14 +3,13 @@ package com.jxd.growup.controller;
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jxd.growup.dao.IGetTermidDistrStuDao;
-import com.jxd.growup.model.Score;
-import com.jxd.growup.model.Student;
-import com.jxd.growup.model.Term;
+import com.jxd.growup.model.*;
 import com.jxd.growup.service.*;
 import com.jxd.growup.service.impl.SchoolGetStuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,10 @@ public class GetSchAllStuController {
     private IinsertStuScoreService iinsertStuScoreService;
     @Autowired
     private IGetTermidDistrStuService getTermidDistrStuService;
+    @Autowired
+    private IGetDeptAppraOfSchService getDeptAppraOfSchService;
+    @Autowired
+    private InsertInfoSchtoDeptService insertInfoSchtoDeptService;
 
     /**
      * 获取学校评价模块的学生信息
@@ -150,7 +153,7 @@ public class GetSchAllStuController {
             int stucount = schAllStuService.getStuCount(termid);
             int scoreStuCount = schAllStuService.getFromTermStudentCount(termid);
             //如果学生数量和评完分的学生数量一致则进行更改，否则不做处理
-            if (stucount == scoreStuCount) {
+            if (stucount == scoreStuCount && stucount != 0) {
                 schAllStuService.updTermState(termid);
                 schAllStuService.updTeacherState(userName);
             }
@@ -159,37 +162,40 @@ public class GetSchAllStuController {
     }
 
     /**
-     *获取未评分学生的该条信息
+     * 获取未评分学生的该条信息
+     *
      * @param stuid
      * @return
      */
     @GetMapping("/getOneStuById/{stuid}")
-    public Map<String,Object> getOneStuById(@PathVariable String stuid) {
-        Map<String,Object> map = new HashMap<>();
-        map= schAllStuService.getOneTomark(stuid);
+    public Map<String, Object> getOneStuById(@PathVariable String stuid) {
+        Map<String, Object> map = new HashMap<>();
+        map = schAllStuService.getOneTomark(stuid);
         return map;
     }
 
     /**
      * 获取学生的基本信息
+     *
      * @param stuid
      * @return
      */
     @PostMapping("/SchoolGetStu")
-    public Student SchoolGetStu(@RequestBody String stuid){
+    public Student SchoolGetStu(@RequestBody String stuid) {
         return schoolGetStuService.getById(stuid);
     }
 
     /**
      * 将评的分数插入到score表中
+     *
      * @param score
      * @return
      */
     @PostMapping("/tocommit")
-    public String insertStuScore(@RequestBody Score score){
-        if (iinsertStuScoreService.updmarkedScore(score)){
+    public String insertStuScore(@RequestBody Score score) {
+        if (iinsertStuScoreService.updmarkedScore(score)) {
             return "success";
-        }else {
+        } else {
             return "fail";
         }
 
@@ -197,16 +203,18 @@ public class GetSchAllStuController {
 
     /**
      * 获取termid当分配部门时(通过学校评价人id)
+     *
      * @return
      */
-   // @GetMapping("/getTermidDistrStu/{userName}")
-    public String getTermidDistrStu(String userName){
+    // @GetMapping("/getTermidDistrStu/{userName}")
+    public String getTermidDistrStu(String userName) {
         String termid = getTermidDistrStuService.getTermidDistrStu(userName);
         return termid;
     }
 
     /**
      * 分配部门功能：获取当前班期所有学生信息
+     *
      * @param queryMap
      * @return
      */
@@ -220,11 +228,62 @@ public class GetSchAllStuController {
         String termids = getTermidDistrStu(userName);
         int termid = Integer.parseInt(termids);
         return schAllStuService.getSchAllStuDistri(limit, page, stuname, termid);
-
-
     }
 
 
+    //获取部门评价人信息
+    @GetMapping("/getDeptAppraToSch/{deptid}")
+    public List<DeptAppra> getDeptAppraToSch(@PathVariable String deptid) {
+        AbstractWrapper wrapper = new QueryWrapper();
+        wrapper.eq("deptid", deptid);
+        return getDeptAppraOfSchService.list(wrapper);
+    }
+
+    /**
+     * 分配部门功能向三个表修改或增加student,dept_evolution_all,dept_evolution_score
+     *
+     * @param stuid
+     * @param deptid
+     * @param deptAppraid
+     * @return
+     */
+    @GetMapping("/insertInfoSchtoDept/{stuid}/{deptid}/{deptAppraid}")
+    public String insertInfoSchtoDept(@PathVariable String stuid, @PathVariable String deptid, @PathVariable String deptAppraid) {
+        insertInfoSchtoDeptService.updStuSchtoDept(stuid, deptid);
+        insertInfoSchtoDeptService.insertStuSchtoDept(stuid, deptAppraid);
+        List<DeptEvaluationScore> list = new ArrayList<>();
+        DeptEvaluationScore deptEvaluationScore = new DeptEvaluationScore();
+        DeptEvaluationScore deptEvaluationScore2 = new DeptEvaluationScore();
+        DeptEvaluationScore deptEvaluationScore3 = new DeptEvaluationScore();
+        DeptEvaluationScore deptEvaluationScore4 = new DeptEvaluationScore();
+        int stuidTwo = Integer.parseInt(stuid);
+        deptEvaluationScore.setStuid(stuidTwo);
+        deptEvaluationScore2.setStuid(stuidTwo);
+        deptEvaluationScore3.setStuid(stuidTwo);
+        deptEvaluationScore4.setStuid(stuidTwo);
+        int deptAppraidTwo = Integer.parseInt(deptAppraid);
+        deptEvaluationScore.setDeptAppraid(deptAppraidTwo);
+        deptEvaluationScore2.setDeptAppraid(deptAppraidTwo);
+        deptEvaluationScore3.setDeptAppraid(deptAppraidTwo);
+        deptEvaluationScore4.setDeptAppraid(deptAppraidTwo);
+        deptEvaluationScore.setDateid(0);
+        deptEvaluationScore2.setDateid(1);
+        deptEvaluationScore3.setDateid(2);
+        deptEvaluationScore4.setDateid(3);
+
+        list.add(deptEvaluationScore);
+        list.add(deptEvaluationScore2);
+        list.add(deptEvaluationScore3);
+        list.add(deptEvaluationScore4);
+        insertInfoSchtoDeptService.addByBatch(list);
+        boolean flag = true;
+        if (flag) {
+            return "success";
+        } else {
+            return "fail";
+        }
+
+    }
 
 
 }
