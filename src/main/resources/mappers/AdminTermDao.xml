@@ -50,5 +50,9 @@
     <update id="updTermState">
         update schoolAppra set state="忙碌" where sch_appra_id=#{schAppraId}
     </update>
+<!--        Map<String,Object> getBusyTerm(String flag);-->
+    <select id="getBusyTerm" resultType="java.util.Map">
+                select term_id,term_name from term where flag = #{flag} and sch_appra_id is not null
+    </select>
 
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service
 public class AdminTermServiceImpl extends ServiceImpl<IAdmintermDao, Term> implements IAdminTermService {
@@ -50,5 +51,10 @@ public class AdminTermServiceImpl extends ServiceImpl<IAdmintermDao, Term> imple
     @Override
     public boolean updTermState(int schAppraId) {
         return admintermDao.updTermState(schAppraId);
+    }
+
+    @Override
+    public List<Map<String, Object>> getBusyTerm(String flag) {
+        return admintermDao.getBusyTerm(flag);
     }
 }

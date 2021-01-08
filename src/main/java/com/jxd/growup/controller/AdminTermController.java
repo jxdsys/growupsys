@@ -23,11 +23,33 @@ public class AdminTermController {
     private ISchAppraService schAppraService;
     @Autowired
     private ITermService termService;
+
+    /**
+     * 获取所有班期信息
+     * @return 班期信息集合
+     */
     @PostMapping("/getAllTerm")
     public Map<String,Object> getAllTerm(){
         Map<String,Object> map = new HashMap<>();
         map.put("data",termService.listMaps());
         map.put("code","200");
+        return map;
+    }
+
+    /**
+     * 获取未结课且已分配老师的班期
+     * @return
+     */
+    @PostMapping("/getBusyTerm")
+    public Map<String,Object> getBusyTerm(){
+        String flag = "未结课";
+        Map<String,Object> map = new HashMap<>();
+        if (adminTermService.getBusyTerm(flag).size()>0){
+            map.put("data",adminTermService.getBusyTerm(flag));
+            map.put("count","200");
+        }else {
+            map.put("count","500");
+        }
         return map;
     }
 

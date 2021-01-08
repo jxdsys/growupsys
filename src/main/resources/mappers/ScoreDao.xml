@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IScoreDao">
+<!--        /**
+     * 根据学生id获取学生在学校的成绩
+     * @param stuid
+     * @return
+     */
+    Map<String,Object> getScoreByStuId(int stuid);-->
+    <select id="getScoreByStuId" resultType="java.util.Map">
+        SELECT
+	t.term_id,
+	sc.sch_appra_name,
+	s.html,
+	s.oracle,
+	s.js,
+	s.java,
+	s.superjava,
+	s.l1,
+	s.content,
+	s.apprascore
+FROM
+	score s
+LEFT JOIN term t ON s.termid = t.term_id
+LEFT JOIN schoolappra sc ON s.sch_appra_id = sc.sch_appra_id
+WHERE
+	s.stuid = #{stuid}
+    </select>
+
+</mapper>

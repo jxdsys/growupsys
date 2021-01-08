@@ -25,6 +25,12 @@ public class LoginController {
     private ILoginService loginService;
     @Autowired
     private IUsersService usersService;
+
+    /**
+     * 登录判断
+     * @param map 获取用户登录时输入的用户名和密码
+     * @return 登录是否成功和用户权限集合
+     */
     @PostMapping("/login")
     public Map<String,Object> getLogin(@RequestBody Map<String,String> map){
         String name = map.get("name") == null ? "" : map.get("name");
@@ -40,6 +46,12 @@ public class LoginController {
             return mapLogin;
         }
     }
+
+    /**
+     * 根据用户名获取用户id和用户密码
+     * @param userName 用户名
+     * @return 用户id和用户密码集合
+     */
     @PostMapping("getPwdByUserName")
     public Map<String,Object> getPwdByUserName(@RequestBody String userName){
         AbstractWrapper wrapper = new QueryWrapper();
@@ -56,6 +68,12 @@ public class LoginController {
         map.put("userid",userid);
         return map;
     }
+
+    /**
+     * 根据用户名修改密码
+     * @param map 用户信息集合
+     * @return 修改是否成功
+     */
     @PostMapping("/updPwd")
     public String updPwd(@RequestBody Map<String,Object> map ){
         String username = map.get("userName").toString();

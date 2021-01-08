@@ -7,6 +7,7 @@ import com.jxd.growup.model.SchoolAppra;
 import com.jxd.growup.model.Term;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IAdminTermService extends IService<Term> {
@@ -37,4 +38,10 @@ public interface IAdminTermService extends IService<Term> {
      * @return
      */
     boolean updTermState(int schAppraId);
+    /**
+     * 获取未结课且已分配老师的班期
+     * @param flag
+     * @return
+     */
+    List<Map<String,Object>> getBusyTerm(String flag);
 }
