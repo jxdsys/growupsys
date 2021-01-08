@@ -28,9 +28,91 @@ public class DeptEvaluationAll {
     //部门评价人id
     private  int appraiserid;
     //部门总评分数
-    private  int score;
+    private  int score0;
     //部门总评评价
-    private String estimated;
+    private String estimatedfirst;
+    //部门总评分数
+    private  int score1;
+    //部门总评评价
+    private String estimatedtwo;
+    //部门总评分数
+    private  int score2;
+    //部门总评评价
+    private String estimatedone;
+    //部门总评分数
+    private  int score3;
+    //部门总评评价
+    private String estimatedthird;
+
+    public int getScore0() {
+        return score0;
+    }
+
+    public void setScore0(int score0) {
+        this.score0 = score0;
+    }
+
+
+
+    public int getScore1() {
+        return score1;
+    }
+
+    public void setScore1(int score1) {
+        this.score1 = score1;
+    }
+
+
+
+    public int getScore2() {
+        return score2;
+    }
+
+    public void setScore2(int score2) {
+        this.score2 = score2;
+    }
+
+
+
+    public int getScore3() {
+        return score3;
+    }
+
+    public void setScore3(int score3) {
+        this.score3 = score3;
+    }
+
+    public String getEstimatedfirst() {
+        return estimatedfirst;
+    }
+
+    public void setEstimatedfirst(String estimatedfirst) {
+        this.estimatedfirst = estimatedfirst;
+    }
+
+    public String getEstimatedtwo() {
+        return estimatedtwo;
+    }
+
+    public void setEstimatedtwo(String estimatedtwo) {
+        this.estimatedtwo = estimatedtwo;
+    }
+
+    public String getEstimatedone() {
+        return estimatedone;
+    }
+
+    public void setEstimatedone(String estimatedone) {
+        this.estimatedone = estimatedone;
+    }
+
+    public String getEstimatedthird() {
+        return estimatedthird;
+    }
+
+    public void setEstimatedthird(String estimatedthird) {
+        this.estimatedthird = estimatedthird;
+    }
 
     public int getDeptAppraid() {
         return deptAppraid;
@@ -80,21 +162,7 @@ public class DeptEvaluationAll {
         this.appraiserid = appraiserid;
     }
 
-    public int getScore() {
-        return score;
-    }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public String getEstimated() {
-        return estimated;
-    }
-
-    public void setEstimated(String estimated) {
-        this.estimated = estimated;
-    }
     /**
      * 默认的无参构造方法
      */

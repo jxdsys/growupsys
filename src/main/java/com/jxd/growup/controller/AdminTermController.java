@@ -75,7 +75,6 @@ public class AdminTermController {
 
     /**
      * 修改老师状态,分配老师
-     *
      * @param
      * @return
      */
@@ -91,6 +90,4 @@ public class AdminTermController {
         }
 
     }
-
-
 }

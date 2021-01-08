@@ -52,7 +52,10 @@ public class DeptController {
     @PostMapping("/addDeptAppra")
     public String addDeptAppra(@RequestBody DeptAppra deptAppra){
         if(deptAppraService.saveOrUpdate(deptAppra)){
-            //新增的时候，同时开闭账号
+            //新增的时候，同时增加账号
+            //查询user表中有没有该用户，没有的话就增加，有的话就不变
+            //怎么获取新增的id
+            //
 
             return "success";
         }else{

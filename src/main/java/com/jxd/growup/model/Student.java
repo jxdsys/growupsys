@@ -1,6 +1,7 @@
 package com.jxd.growup.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -32,6 +33,7 @@ public class Student {
     //备注
     private String content;
     //图片地址
+    @TableField("picture_add")
     private String pictureAdd;
     //班期，外键
     private int termid;

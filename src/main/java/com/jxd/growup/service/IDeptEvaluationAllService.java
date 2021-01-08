@@ -1,52 +1,46 @@
-package com.jxd.growup.dao;
+package com.jxd.growup.service;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.jxd.growup.model.Dept;
 import com.jxd.growup.model.DeptEvaluationAll;
 import com.jxd.growup.model.DeptEvaluationScore;
-import com.jxd.growup.model.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
-public interface IDeptEvaluationAllDao extends BaseMapper<DeptEvaluationAll> {
+public interface IDeptEvaluationAllService extends IService<DeptEvaluationAll> {
     /**
-     * 分页显示员工信息
+     * 分页查询未评分学员信息
+     * @param limit  条数
      * @param page 页码
-     * @param ename 员工名称
-     * @return 数据
+     * @param ename 姓名
+     * @return 评价人信息
      */
-    IPage<Map<String ,Object >> selectEmpList(Page<Map<String ,Object >> page,
-                                              @Param("stuname") String ename,
-                                              @Param("deptAppraid") int username);
+    Map<String ,Object > selectEmpList(int limit, int page, String ename,int username);
 
     /**
      * 查询登录者属于哪一个部门
      * @param username 用户名
      * @return 用户所属部门
      */
-    String getOneDept(@Param("deptAppraid") String username);
+    String getOneDept(String username);
     /**
-     * 分页显示员工信息
+     * 分页以评分学员信息
+     * @param limit  条数
      * @param page 页码
-     * @param ename 员工名称
-     * @return 数据
+     * @param ename 姓名
+     * @return 信息
      */
-    IPage<Map<String ,Object >> selectAllEmpList(Page<Map<String ,Object >> page,
-                                              @Param("stuname") String ename,
-                                              @Param("deptAppraid") int username);
+    Map<String ,Object > selectAllEmpList(int limit, int page, String ename,int username);
 
     /**
      * 查员工部门以及其他信息
      * @param stuid
      * @return
      */
-    Map<String ,String> getEmpDeptInfoById(String stuid);
-
+    Map<String ,String>  getEmpDeptInfoById(String stuid);
     /**
-     * 保存成绩
+     * 保存转正成绩
      * @param deptEvaluationScore 实体类
      * @return 是否成功
      */
@@ -58,7 +52,6 @@ public interface IDeptEvaluationAllDao extends BaseMapper<DeptEvaluationAll> {
      * @return 是否成功
      */
     boolean updateAllScoreFirst(DeptEvaluationAll deptEvaluationAll);
-
     /**
      * 保存一年评价
      * @param deptEvaluationAll 实体类
@@ -78,12 +71,12 @@ public interface IDeptEvaluationAllDao extends BaseMapper<DeptEvaluationAll> {
      * @return 是否成功
      */
     boolean updateAllScoreThridYear(DeptEvaluationAll deptEvaluationAll);
-
     /**
      * 查询分数
      * @param stuid 学生id
      * @param timeida 年限
      * @return 成绩数据
      */
-    Map<String ,Object> selectEmpScore(@Param("stuid") int stuid,@Param("dateid") int timeida );
+    Map<String ,Object> selectEmpScore(@Param("stuid") int stuid, @Param("dateid") int timeida);
+
 }
