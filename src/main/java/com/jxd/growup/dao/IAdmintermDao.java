@@ -44,8 +44,6 @@ public interface IAdmintermDao extends BaseMapper<Term> {
      */
     boolean updTermState(int schAppraId);
 
-    @Override
-    List<Map<String, Object>> selectMaps(Wrapper<Term> queryWrapper);
 
     /**
      * 获取未结课且已分配老师的班期

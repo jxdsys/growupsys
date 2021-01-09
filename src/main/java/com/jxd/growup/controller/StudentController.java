@@ -32,6 +32,12 @@ public class StudentController {
     private IScoreService scoreService;
     @Autowired
     private IDeptAppraSetScoreService deptAppraSetScoreService;
+
+    /**
+     * 修改学生信息
+     * @param student
+     * @return
+     */
     @PostMapping("/updStuByStuid")
     public String updStuByStuid(@RequestBody Student student){
        if (studentService.updateById(student)){
@@ -40,10 +46,16 @@ public class StudentController {
            return "fail";
        }
     }
+
+    /**
+     * 保存图片
+     * @param imgfile
+     * @return
+     */
     @PostMapping(value="uploadImg",produces = "text/html;charset=utf-8")
     public String upload(@RequestParam("file1") MultipartFile imgfile) {
         //指定存储路径
-        String savePath = "D:\\Users\\86159\\web-growsys\\src\\assets\\img";
+        String savePath = "D:\\img";
         //创建存储文件夹
         //创建文件对象
         File file = new File(savePath);
@@ -78,19 +90,26 @@ public class StudentController {
         //    System.out.println(srcPath);
         return name_new;
     }
+
+    /**
+     * 根据员工id获取员工信息
+     * @param stuid 员工id
+     * @return
+     */
     @PostMapping("/isUpdStu")
     public Map<String,Object> isUpdStu(@RequestBody String stuid){
         Student student = studentService.getById(stuid);
         Map<String,Object> map = new HashMap<>();
-        if (student.getCardid() != null){
-            map.put("return","1");
-            map.put("data",student);
-        }else {
-            map.put("return","2");
-            map.put("data",student);
-        }
+        map.put("return","1");
+        map.put("data",student);
         return map;
     }
+
+    /**
+     * 跟据学生id获取学生的全部评价
+     * @param userName
+     * @return
+     */
     @PostMapping("/GetAllAppra")
     public Map<String,Object> GetAllAppra(@RequestBody String userName){
         Map<String,Object> map = new HashMap<>();

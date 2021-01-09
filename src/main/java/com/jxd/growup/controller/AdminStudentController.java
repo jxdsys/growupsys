@@ -13,6 +13,7 @@ import com.jxd.growup.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,7 +107,15 @@ public class AdminStudentController {
      */
     @PostMapping("/delBatchStu")
     public String delBatchStu(@RequestBody List<Integer> arrstuids){
+        List<Users> list = new ArrayList<>();
+
+        for (int i = 0; i < arrstuids.size(); i++) {
+            Users users  = new Users();
+            users.setUsername(arrstuids.get(i)+"");
+            list.add(users);
+        };
         if (studentService.removeByIds(arrstuids)){
+
             return "success";
         }else{
             return "fail";

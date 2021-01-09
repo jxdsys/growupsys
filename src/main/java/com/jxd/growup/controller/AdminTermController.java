@@ -63,8 +63,7 @@ public class AdminTermController {
     }
 
     /**
-     * 新增班期
-     *
+     * 新增员工
      * @return
      */
     @PostMapping("/addTerm")
