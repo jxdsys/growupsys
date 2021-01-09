@@ -20,7 +20,7 @@ public class MenutoController {
 
     /**
      * 动态获取菜单
-     * @param role
+     * @param role 权限
      * @return
      */
     @PostMapping("/getMenu")

@@ -9,4 +9,44 @@
         from schoolappra sc
         where sc.sch_appra_name like concat('%',#{sname},'%')
     </select>
+
+<!--    /**-->
+<!--    * 新增学校评价人时，获取id-->
+<!--    * @return-->
+<!--    */-->
+<!--    String getIdWhenInsertSchAppra();-->
+    <select id="getIdWhenInsertSchAppra" resultType="String">
+         select sch_appra_id from schoolappra order by sch_appra_id DESC LIMIT 1
+    </select>
+<!--    /**-->
+<!--    * 新增学校评价人时向users表新增-->
+<!--    * @param schappraid-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean insertToUsers(String schappraid);-->
+    <insert id="insertToUsers">
+        insert into users(username,password,role) values(#{schappraid},123,2)
+    </insert>
+
+<!--    /**-->
+<!--    * 删除users表中的用户-->
+<!--    * @param appraid-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean delUsers(String appraid);-->
+    <delete id="delUsers">
+        delete from users where username=#{appraid}
+    </delete>
+<!--    /**-->
+<!--    * 批量删除users表中的用户-->
+<!--    * @param list-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean delBatchUsers(List<Integer> list);-->
+    <delete id="delBatchUsers">
+        delete from users where username in
+        <foreach collection="list" item="users" open="(" close=")" separator=",">
+            #{users.username}
+        </foreach>
+    </delete>
 </mapper>

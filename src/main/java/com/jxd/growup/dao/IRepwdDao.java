@@ -21,4 +21,6 @@ public interface IRepwdDao extends BaseMapper<Users>  {
      * @return
      */
     boolean rePwd(int userid);
+
+
 }

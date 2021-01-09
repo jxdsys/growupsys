@@ -32,7 +32,7 @@ public class GetSchAllStuController {
     private InsertInfoSchtoDeptService insertInfoSchtoDeptService;
 
     /**
-     * 获取学校评价模块的学生信息
+     * 获取学校评价模块的所有学生信息(学校评价功能模块)
      *
      * @param queryMap
      * @return
@@ -43,7 +43,9 @@ public class GetSchAllStuController {
         int limit = Integer.parseInt(queryMap.get("limit"));
         int page = Integer.parseInt(queryMap.get("page"));
         String stuname = queryMap.get("filter") == null ? "" : queryMap.get("filter");
+        //班期
         String termsId = queryMap.get("termid") == null ? "" : queryMap.get("termid");
+        //如果termsId为空，查询所有学生信息，否则获取该班期的学生信息
         if (termsId.equals("")) {
             return schAllStuService.getFirstSchAllStu(limit, page, stuname);
         } else {
@@ -54,7 +56,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取班期
+     * 获取该老师所教授的所有班期(学校评价功能模块)
      *
      * @return
      */
@@ -69,7 +71,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取登录学校评价人当前教授班期id
+     * 获取登录学校评价人当前教授班期id(学校评价功能模块)
      *
      * @param userName
      * @return
@@ -92,7 +94,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取登录学校评价人当前教授班期id
+     * 获取登录学校评价人当前教授班期id(学校评价功能模块)
      *
      * @param userName
      * @return
@@ -116,7 +118,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取登录学校评价人教授当前班期的学生信息
+     * 获取登录学校评价人教授当前班期的学生信息(学校评价功能模块)
      *
      * @param queryMap
      * @return
@@ -141,7 +143,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 通过获取的termid和教师(评价人)的id在完成评分后进修修改班期状态和老师状态
+     * 通过获取的termid和教师(评价人)的id在完成评分后进修修改班期状态和老师状态(学校评价功能模块)
      *
      * @param userName
      */
@@ -162,7 +164,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取未评分学生的该条信息
+     * 评分时，获取还未评分(或即将评分)学生的该条信息(学校评价功能模块)
      *
      * @param stuid
      * @return
@@ -175,8 +177,8 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取学生的基本信息
-     *
+     * 获取学生的基本信息(学校评价功能模块)
+     *评分时上方表的学生信息
      * @param stuid
      * @return
      */
@@ -186,7 +188,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 将评的分数插入到score表中
+     * 将评的分数插入到score表中(学校评价功能模块)
      *
      * @param score
      * @return
@@ -202,7 +204,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取termid当分配部门时(通过学校评价人id)
+     * 当分配部门时获取termid(通过学校评价人id)(学校评价功能模块)
      *
      * @return
      */
@@ -213,7 +215,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 分配部门功能：获取当前班期所有学生信息
+     * 分配部门功能：获取当前班期所有学生信息(学校评价功能模块)
      *
      * @param queryMap
      * @return
@@ -240,7 +242,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 分配部门功能向三个表修改或增加student,dept_evolution_all,dept_evolution_score
+     * 分配部门功能向三个表修改或增加student,dept_evolution_all,dept_evolution_score(学校评价功能模块)
      *
      * @param stuid
      * @param deptid
