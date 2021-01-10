@@ -20,7 +20,11 @@ public class AdminTermController {
     @Autowired
     private ISchAppraService schAppraService;
 
-//    @PostMapping("/getTerm")
+    /**
+     * 获得所有班期信息
+     * @param queryMap
+     * @return
+     */
     @PostMapping("/getTerm")
     public Map<String, Object> getTerm(@RequestBody Map<String, String> queryMap) {
         //获取每个查询参数
@@ -49,7 +53,7 @@ public class AdminTermController {
     }
 
     /**
-     * 得到选中该条的数据
+     * 得到选中该条的数据(维护班期功能)
      *
      * @param term_id
      * @return
@@ -61,7 +65,7 @@ public class AdminTermController {
     }
 
     /**
-     * 获得空闲的老师下拉框
+     * 获得空闲的老师下拉框(维护班期功能)
      *
      * @return
      */
@@ -74,7 +78,8 @@ public class AdminTermController {
     }
 
     /**
-     * 修改老师状态,分配老师
+     * 修改老师状态,分配老师(维护班期功能)
+     *
      * @param
      * @return
      */
@@ -90,4 +95,6 @@ public class AdminTermController {
         }
 
     }
+
+
 }

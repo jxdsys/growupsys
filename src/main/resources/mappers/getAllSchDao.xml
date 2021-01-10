@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IGetSchAllStuDao">
+
+<!--    /**-->
+<!--    * 获取所有学校评价人信息-->
+<!--    * @return-->
+<!--    */-->
+<!--    IPage<Map<String,Object>> getSchAllStu(Page<Map<String,Object>> pages, @Param("stuname") String stuname,@Param("termid") int termId);-->
+        <select id="getSchAllStu" resultType="java.util.Map">
+            select s.stuname,s.sex,s.natives,s.school, sc.html,sc.oracle,sc.java,sc.js,sc.superjava,sc.l1,sc.apprascore,s.termid,sc.stuid
+             from student s left join score sc on s.stuid=sc.stuid
+             left join term t on s.termid=t.term_id
+              where s.stuname like '%' #{stuname} '%'
+              and s.termid = #{termid}
+        </select>
+
+<!--    IPage<Map<String,Object>> getFirstSchAllStu(Page<Map<String,Object>> pages, @Param("stuname") String stuname);-->
+        <select id="getFirstSchAllStu" resultType="java.util.Map">
+            select s.stuname,s.sex,s.natives,s.school, sc.html,sc.oracle,sc.java,sc.js,sc.superjava,sc.l1,sc.apprascore,s.termid,sc.stuid
+             from student s left join score sc on s.stuid=sc.stuid
+             left join term t on s.termid=t.term_id
+              where s.stuname like '%' #{stuname} '%'
+        </select>
+<!--    /**-->
+<!--    * 得到某一期学生总数-->
+<!--    * @param termid-->
+<!--    * @return-->
+<!--    */-->
+<!--    int getStuCount(int termid);-->
+    <select id="getStuCount" resultType="Integer">
+        select count(*) from student where termid=#{termid}
+    </select>
+<!--    /**-->
+<!--    * 得到成绩表中，总成绩不为空的某一期的学生人数-->
+<!--    * @param termid-->
+<!--    * @return-->
+<!--    */-->
+<!--    int getFromTermStudentCount(int termid);-->
+    <select id="getFromTermStudentCount" resultType="Integer">
+         select count(*) from score where termid=#{termid} and apprascore !=0
+    </select>
+<!--    /**-->
+<!--    * 修改老师(评价人)状态-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean updTeacherState(String userName);-->
+    <update id="updTeacherState">
+        update schoolappra set state='空闲' where sch_appra_id = #{userName}
+    </update>
+
+<!--    /**-->
+<!--    * 修改班期状态-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean updTermState(int termid);-->
+    <update id="updTermState">
+        update term set flag='结课' where term_id = #{termid}
+    </update>
+
+<!--    /**-->
+<!--    * 给某个学生评分时所获取的该条数据-->
+<!--    * @param stuid-->
+<!--    * @return-->
+<!--    */-->
+<!--    Map<String,Object> getOneTomark(int stuid);-->
+    <select id="getOneTomark" resultType="java.util.Map">
+        select * from score sc
+        left join schoolappra s on sc.sch_appra_id=s.sch_appra_id
+         where sc.stuid = #{stuid}
+    </select>
+
+
+<!--    /**-->
+<!--    * 获取某期所有学校评价人模块学生信息(分配部门)-->
+<!--    * @return-->
+<!--    */-->
+<!--    IPage<Map<String,Object>> getSchAllStuDistri(Page<Map<String,Object>> pages, @Param("stuname") String stuname,@Param("termid") int termId);-->
+    <select id="getSchAllStuDistri" resultType="java.util.Map">
+            select s.stuname,s.sex,s.natives,s.school, sc.html,sc.oracle,sc.java,sc.js,sc.superjava,sc.l1,sc.apprascore,s.termid,s.stuid,s.deptno
+             from student s left join score sc on s.stuid=sc.stuid
+             left join term t on s.termid=t.term_id
+              where s.stuname like '%' #{stuname} '%'
+              and s.termid = #{termid} and sc.apprascore!=0
+        </select>
+</mapper>

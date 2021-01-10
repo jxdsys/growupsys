@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IinsertStuScoreDao">
+<!--    /**-->
+<!--    * 将评的成绩放入表中-->
+<!--    * @param score-->
+<!--    * @return-->
+<!--    */-->
+<!--    boolean updmarkedScore(Score score);-->
+    <update id="updmarkedScore">
+       update score set html=#{html},oracle=#{oracle},js=#{js},
+       java=#{java},l1=#{l1},superjava=#{superjava},apprascore=#{apprascore},
+       content=#{content} where stuid=#{stuid}
+
+    </update>
+</mapper>

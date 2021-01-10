@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jxd.growup.dao.ISchAppraDao;
 import com.jxd.growup.model.SchoolAppra;
+import com.jxd.growup.model.Users;
 import com.jxd.growup.service.ISchAppraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,25 @@ public class SchAppraServiceImpl extends ServiceImpl<ISchAppraDao, SchoolAppra> 
         map.put("total",result.getTotal());
         map.put("pageCount",result.getPages());
         return map;
+    }
+
+    @Override
+    public String getIdWhenInsertSchAppra() {
+        return schAppraDao.getIdWhenInsertSchAppra();
+    }
+
+    @Override
+    public boolean insertToUsers(String schappraid) {
+        return schAppraDao.insertToUsers(schappraid);
+    }
+
+    @Override
+    public boolean delUsers(String appraid) {
+        return schAppraDao.delUsers(appraid);
+    }
+
+    @Override
+    public boolean delBatchUsers(List<Users> list) {
+        return schAppraDao.delBatchUsers(list);
     }
 }

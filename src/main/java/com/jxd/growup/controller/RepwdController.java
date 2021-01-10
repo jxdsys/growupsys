@@ -12,6 +12,12 @@ import java.util.Map;
 public class RepwdController {
     @Autowired
     private IUsersService usersService;
+
+    /**
+     * 获得用户表中信息
+     * @param queryMap
+     * @return
+     */
     @PostMapping("/getUsers")
     public Map<String,Object> getUsers(@RequestBody Map<String,String> queryMap){
         //获取每个查询参数
@@ -21,6 +27,11 @@ public class RepwdController {
         return usersService.getUsers(limit,page,uname);
     }
 
+    /**
+     * 重置用户密码
+     * @param userid 重置用户时的用户id
+     * @return
+     */
     @GetMapping("/repwd/{userid}")
     public String repwd(@PathVariable int userid){
         if (usersService.rePwd(userid)){

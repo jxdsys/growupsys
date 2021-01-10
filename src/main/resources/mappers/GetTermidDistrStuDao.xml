@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IGetTermidDistrStuDao">
+<!--    /**-->
+<!--    * 获取termid当分配部门时(通过学校评价人id)-->
+<!--    * @param userName 老师(评价人id)-->
+<!--    * @return-->
+<!--    */-->
+<!--    String getTermidDistrStu(String userName);-->
+    <select id="getTermidDistrStu" resultType="String">
+        select term_id from term where sch_appra_id=#{userName} order by term_id DESC LIMIT 1
+    </select>
+</mapper>
