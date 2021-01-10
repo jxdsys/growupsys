@@ -11,7 +11,7 @@
         <select id="getAllTerm" resultType="java.util.Map">
          select t.term_id,t.term_name,t.flag,t.sch_appra_id,sch.sch_appra_name,sch.state
         from term t left join schoolappra sch on t.sch_appra_id=sch.sch_appra_id
-        where t.term_name like concat('%',#{tname},'%')
+        where t.term_name like concat('%',#{tname},'%') order by t.term_name
         </select>
 
 <!--    /**-->
