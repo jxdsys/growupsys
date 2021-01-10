@@ -7,9 +7,11 @@ import com.jxd.growup.model.SchoolAppra;
 import com.jxd.growup.model.Term;
 import com.jxd.growup.service.IAdminTermService;
 import com.jxd.growup.service.ISchAppraService;
+import com.jxd.growup.service.ITermService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +21,37 @@ public class AdminTermController {
     private IAdminTermService adminTermService;
     @Autowired
     private ISchAppraService schAppraService;
+    @Autowired
+    private ITermService termService;
+
+    /**
+     * 获取所有班期信息
+     * @return 班期信息集合
+     */
+    @PostMapping("/getAllTerm")
+    public Map<String,Object> getAllTerm(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",termService.listMaps());
+        map.put("code","200");
+        return map;
+    }
+
+    /**
+     * 获取未结课且已分配老师的班期
+     * @return
+     */
+    @PostMapping("/getBusyTerm")
+    public Map<String,Object> getBusyTerm(){
+        String flag = "未结课";
+        Map<String,Object> map = new HashMap<>();
+        if (adminTermService.getBusyTerm(flag).size()>0){
+            map.put("data",adminTermService.getBusyTerm(flag));
+            map.put("count","200");
+        }else {
+            map.put("count","500");
+        }
+        return map;
+    }
 
     /**
      * 获得所有班期信息
@@ -35,8 +68,7 @@ public class AdminTermController {
     }
 
     /**
-     * 新增班期
-     *
+     * 新增员工
      * @return
      */
     @PostMapping("/addTerm")

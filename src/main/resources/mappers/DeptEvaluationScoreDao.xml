@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IDeptEvaluationScoreDao">
+<!--    /**
+    * 根据学生id和年份标志位获取部门评价成绩getDeptEvaluationByOneScoreByStuid
+    * @param stuid 学生id
+    * @param Dateid 年份标志位
+    * @return
+    */
+    Map<String,Object> getDeptEvaluationScoreByStuidAndDateid(@Param("stuid") int stuid;-->
+    <select id="getDeptEvaluationByThreeMScoreByStuid" resultType="java.util.Map">
+    SELECT
+        d.dname,
+        j.job,
+        da.dept_appra_name,
+        des.ability,
+        des.activity,
+        des.communication,
+        des.moral_quality,
+        des.disposition,
+        dea.score0,
+        dea.estimatedfirst
+    FROM
+        student s
+    LEFT JOIN dept_evaluation_score des ON s.stuid = des.stuid
+    LEFT JOIN dept_evaluation_all dea ON dea.stuid = s.stuid
+    LEFT JOIN job j ON j.jobid = s.jobid
+    LEFT JOIN dept d ON d.deptid = s.deptno
+    LEFT JOIN dept_appra da ON da.dept_appraid = des.dept_appraid
+    WHERE
+        des.stuid = #{stuid}
+    AND des.dateid = 0
+    </select>
+    <select id="getDeptEvaluationByOneScoreByStuid" resultType="java.util.Map">
+    SELECT
+        d.dname,
+        j.job,
+        da.dept_appra_name,
+        des.ability,
+        des.activity,
+        des.communication,
+        des.moral_quality,
+        des.disposition,
+        dea.score1,
+        dea.estimatedone
+    FROM
+        student s
+    LEFT JOIN dept_evaluation_score des ON s.stuid = des.stuid
+    LEFT JOIN dept_evaluation_all dea ON dea.stuid = s.stuid
+    LEFT JOIN job j ON j.jobid = s.jobid
+    LEFT JOIN dept d ON d.deptid = s.deptno
+    LEFT JOIN dept_appra da ON da.dept_appraid = des.dept_appraid
+    WHERE
+        des.stuid = #{stuid}
+    AND des.dateid = 1
+    </select>
+    <select id="getDeptEvaluationByTwoScoreByStuid" resultType="java.util.Map">
+    SELECT
+        d.dname,
+        j.job,
+        da.dept_appra_name,
+        des.ability,
+        des.activity,
+        des.communication,
+        des.moral_quality,
+        des.disposition,
+        dea.score2,
+        dea.estimatedtwo
+    FROM
+        student s
+    LEFT JOIN dept_evaluation_score des ON s.stuid = des.stuid
+    LEFT JOIN dept_evaluation_all dea ON dea.stuid = s.stuid
+    LEFT JOIN job j ON j.jobid = s.jobid
+    LEFT JOIN dept d ON d.deptid = s.deptno
+    LEFT JOIN dept_appra da ON da.dept_appraid = des.dept_appraid
+    WHERE
+        des.stuid = #{stuid}
+    AND des.dateid = 2
+    </select>
+    <select id="getDeptEvaluationByThreeScoreByStuid" resultType="java.util.Map">
+    SELECT
+        d.dname,
+        j.job,
+        da.dept_appra_name,
+        des.ability,
+        des.activity,
+        des.communication,
+        des.moral_quality,
+        des.disposition,
+        dea.score3,
+        dea.estimatedthird
+    FROM
+        student s
+    LEFT JOIN dept_evaluation_score des ON s.stuid = des.stuid
+    LEFT JOIN dept_evaluation_all dea ON dea.stuid = s.stuid
+    LEFT JOIN job j ON j.jobid = s.jobid
+    LEFT JOIN dept d ON d.deptid = s.deptno
+    LEFT JOIN dept_appra da ON da.dept_appraid = des.dept_appraid
+    WHERE
+        des.stuid = #{stuid}
+    AND des.dateid = 3
+    </select>
+</mapper>

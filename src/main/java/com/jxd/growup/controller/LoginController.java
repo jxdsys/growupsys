@@ -25,6 +25,12 @@ public class LoginController {
     private ILoginService loginService;
     @Autowired
     private IUsersService usersService;
+
+    /**
+     * 登录判断
+     * @param map 获取用户登录时输入的用户名和密码
+     * @return 登录是否成功和用户权限集合
+     */
     @PostMapping("/login")
     public Map<String,Object> getLogin(@RequestBody Map<String,String> map){
         String name = map.get("name") == null ? "" : map.get("name");
@@ -40,6 +46,12 @@ public class LoginController {
             return mapLogin;
         }
     }
+
+    /**
+     * 根据用户名获取用户id和用户密码
+     * @param userName 用户名
+     * @return 用户id和用户密码集合
+     */
     @PostMapping("getPwdByUserName")
     public Map<String,Object> getPwdByUserName(@RequestBody String userName){
         AbstractWrapper wrapper = new QueryWrapper();
@@ -48,23 +60,27 @@ public class LoginController {
         for (int i = 0; i < usernames.length; i++) {
             username = usernames[i]+username;
         }
-
         wrapper.eq("username",username);
         String password = usersService.getOne(wrapper).getPassword();
+        String userid = usersService.getOne(wrapper).getUserid() + "";
         Map<String,Object> map = new HashMap<>();
-        map.put("data",password);
+        map.put("password",password);
+        map.put("userid",userid);
         return map;
     }
+
+    /**
+     * 根据用户名修改密码
+     * @param map 用户信息集合
+     * @return 修改是否成功
+     */
     @PostMapping("/updPwd")
     public String updPwd(@RequestBody Map<String,Object> map ){
-        String username = map.get("username").toString();
+        String username = map.get("userName").toString();
         String password = map.get("pass").toString();
-        AbstractWrapper wrapper = new QueryWrapper();
-        Map<String,String> mapUser = new HashMap<>();
-        map.put("username",username);
-        map.put("password",password);
-        wrapper.allEq(mapUser);
-        if (usersService.update(wrapper)){
+        int userid = Integer.parseInt(map.get("userid").toString());
+        Users users = new Users(userid,username,password);
+        if (usersService.updateById(users)){
             return "success";
         }else {
             return  "fail";

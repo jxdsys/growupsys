@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jxd.growup.dao.IRepwdDao;
+import com.jxd.growup.dao.IUsersDao;
 import com.jxd.growup.model.Users;
 import com.jxd.growup.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class UsersServiceImpl extends ServiceImpl<IRepwdDao,Users> implements IUsersService {
+public class UsersServiceImpl extends ServiceImpl<IUsersDao, Users> implements IUsersService  {
     @Autowired
-    private IRepwdDao repwdDao;
+    IRepwdDao repwdDao;
+    @Autowired
+    private IUsersDao usersDao;
+
 
     @Override
     public Map<String, Object> getUsers(int limit,int page,String uname) {
@@ -34,5 +38,10 @@ public class UsersServiceImpl extends ServiceImpl<IRepwdDao,Users> implements IU
     @Override
     public boolean rePwd(int userid) {
         return repwdDao.rePwd(userid);
+    }
+
+    @Override
+    public int selLastId() {
+        return usersDao.selLastId();
     }
 }

@@ -1,10 +1,10 @@
-package com.jxd.growup.dao;
+package com.jxd.growup.service;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
-public interface IDeptEvaluationScoreDao {
+public interface IDeptAppraSetScoreService {
     /**
      * 根据学生id获取转正评价的成绩
      * @param stuid 学生id

@@ -141,4 +141,16 @@ public class Score {
      */
     public Score() {
     }
+
+    /**
+     * 新增成绩
+     * @param stuid
+     * @param schAppraId
+     * @param termid
+     */
+    public Score(int stuid, int schAppraId, int termid) {
+        this.stuid = stuid;
+        this.schAppraId = schAppraId;
+        this.termid = termid;
+    }
 }

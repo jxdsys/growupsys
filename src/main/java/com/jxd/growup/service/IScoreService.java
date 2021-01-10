@@ -1,11 +1,11 @@
-package com.jxd.growup.dao;
+package com.jxd.growup.service;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.jxd.growup.model.Score;
 
 import java.util.Map;
 
-public interface IScoreDao extends BaseMapper<Score> {
+public interface IScoreService extends IService<Score> {
     /**
      * 根据学生id获取学生在学校的成绩
      * @param stuid

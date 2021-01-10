@@ -1,5 +1,6 @@
 package com.jxd.growup.dao;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -7,6 +8,7 @@ import com.jxd.growup.model.SchoolAppra;
 import com.jxd.growup.model.Term;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IAdmintermDao extends BaseMapper<Term> {
@@ -41,6 +43,14 @@ public interface IAdmintermDao extends BaseMapper<Term> {
      * @return
      */
     boolean updTermState(int schAppraId);
+
+
+    /**
+     * 获取未结课且已分配老师的班期
+     * @param flag
+     * @return
+     */
+    List<Map<String,Object>> getBusyTerm(String flag);
 
 
 

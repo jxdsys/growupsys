@@ -22,4 +22,11 @@ public interface IUsersService extends IService<Users> {
      * @return
      */
     boolean rePwd(int userid);
+
+
+    /**
+     * 获取最后插入元素的id
+     * @return
+     */
+    int selLastId();
 }
