@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IDeptAppraDao">
+<!--    IPage<Map<String ,Object >> selectDeptAppraWithDeptAndJob(Page<Map<String ,Object >> page,
+                                                              @Param("deptAppraName") String ename);-->
+<select id="selectDeptAppraWithDeptAndJob" resultType="java.util.Map">
+        select dept_appraid,dept_appra_name,dname,job from dept_appra a
+        left join dept d on d.deptid =a.deptid
+        left join job j on a.jobid=j.jobid
+        where dept_appra_name like concat('%',#{deptAppraName},'%')
+    </select>
+
+<!--     /**
+     * 新增时查询新增的id
+     * @return
+     */
+     int getMaxId();-->
+    <select id="getMaxId" resultType="integer">
+        select max(dept_appraid) from dept_appra
+    </select>
+
+<!--    /**-->
+<!--    *  批量删除user表中内容-->
+<!--    * @param users-->
+<!--    * @return 是否成功-->
+<!--    */-->
+<!--    boolean deUsersWithDeptAppra(List<Users> users);-->
+    <delete id="deUsersWithDeptAppra">
+        delete from users where username in
+        <foreach collection="list" item="users" open="(" close=")" separator=",">
+            #{users.username}
+        </foreach>
+    </delete>
+</mapper>

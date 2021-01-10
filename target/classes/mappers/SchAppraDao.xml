@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.ISchAppraDao">
+
+<!--    IPage<Map<String,Object>> getAllSch(Page<Map<String,Object>> pages, @Param("sname") String sname);-->
+
+    <select id="getAllSch" resultType="java.util.Map">
+        select sc.sch_appra_id,sc.sch_appra_name,sc.sex,sc.hiredate,sc.state
+        from schoolappra sc
+        where sc.sch_appra_name like concat('%',#{sname},'%')
+    </select>
+</mapper>

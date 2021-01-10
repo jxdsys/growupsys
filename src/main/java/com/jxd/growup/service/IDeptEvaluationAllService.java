@@ -67,7 +67,7 @@ public interface IDeptEvaluationAllService extends IService<DeptEvaluationAll> {
      */
     boolean updateAllScoreTwoYear(DeptEvaluationAll deptEvaluationAll);
     /**
-     * //
+     *
      * 保存三年评价
      * @param deptEvaluationAll 实体类
      * @return 是否成功

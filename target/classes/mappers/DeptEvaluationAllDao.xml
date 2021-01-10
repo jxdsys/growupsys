@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxd.growup.dao.IDeptEvaluationAllDao">
+    <!--    /**
+         * 分页显示未评分员工信息
+         * @param page 页码
+         * @param ename 员工名称
+         * @return 数据
+         */
+        IPage<Map<String ,Object >> selectEmpList(Page<Map<String ,Object >> page,
+                                                  @Param("stuname") String ename);-->
+    <select id="selectEmpList" resultType="java.util.Map">
+   SELECT
+    s.stuid,
+    s.stuname,
+    s.sex,
+    s.school,
+    s.natives,
+    s.hiredate,
+    sc.html,
+    sc.oracle,
+    sc.js,
+    sc.java,
+    sc.superjava,
+    sc.l1,
+    sc.apprascore,
+    dea.score0,
+    dea.score1,
+    dea.score2,
+    dea.score3
+    FROM
+    student s
+    LEFT JOIN score sc ON sc.stuid = s.stuid
+    LEFT JOIN dept_evaluation_all dea ON s.stuid = dea.stuid
+    LEFT JOIN dept d ON d.deptid = s.deptno
+    WHERE s.stuname like concat('%',#{stuname},'%')
+    AND dea.dept_appraid = #{deptAppraid}
+    AND sc.apprascore is NOT NULL
+    AND sc.apprascore !=0
+    </select>
+    <!-- /**
+     LEFT JOIN dept_appra da ON da.deptAppraid = d.deptid
+         * 查询登录者属于哪一个部门
+         * @param username 用户名
+         * @return 用户所属部门
+         */
+        String getOneDept(@Param("deptAppraid") String username);-->
+
+    <select id="getOneDept" resultType="string">
+    SELECT
+	d.dname FROM dept d
+	LEFT JOIN dept_appra da ON d.deptid = da.deptid
+	WHERE
+	dept_appraid = #{deptAppraid}
+    </select>
+    <!--    /**
+     * 分页显示已评分员工信息
+     * @param page 页码
+     * @param ename 员工名称
+     * @return 数据
+     */
+    IPage<Map<String ,Object >> selectEmpList(Page<Map<String ,Object >> page,
+                                              @Param("stuname") String ename);-->
+    <select id="selectAllEmpList" resultType="java.util.Map">
+    SELECT
+    s.stuid,
+    s.stuname,
+    s.sex,
+    s.school,
+    s.natives,
+    sc.html,
+    sc.oracle,
+    sc.js,
+    sc.java,
+    sc.superjava,
+    sc.l1,
+    sc.apprascore,
+    dea.score0,
+    dea.score1,
+    dea.score2,
+    dea.score3
+    FROM
+    student s
+    LEFT JOIN score sc ON sc.stuid = s.stuid
+    LEFT JOIN dept_evaluation_all dea ON s.stuid = dea.stuid
+    LEFT JOIN dept d ON d.deptid = s.deptno
+    WHERE stuname like concat('%',#{stuname},'%')
+    AND dea.dept_appraid = #{deptAppraid}
+        AND score1 is NOT NULL
+        AND score0 is NOT NULL
+        AND score2 is NOT NULL
+        AND score3 is NOT NULL
+        AND score3 !=0
+    AND sc.apprascore is NOT NULL
+    AND sc.apprascore !=0
+    </select>
+    <!--    Student getEmpDeptInfoById(String stuid);-->
+    <select id="getEmpDeptInfoById" resultType="java.util.Map">
+    SELECT
+    job,
+    dname,
+    dept_appra_name
+    FROM
+    student s
+    LEFT JOIN job j ON j.jobid = s.jobid
+    LEFT JOIN dept d ON d.deptid = s.deptno
+    LEFT JOIN dept_appra da ON da.deptid = s.deptno
+    WHERE
+    s.stuid = #{stuid}
+    AND da.dept_appraid = (SELECT
+    dea.dept_appraid
+    FROM
+    dept_evaluation_all dea
+    WHERE
+    s.stuid = dea.stuid)
+    </select>
+    <!--    /**-->
+    <!--    * 保存转正成绩-->
+    <!--    * @param map 传过来的参数-->
+    <!--    * @return 是否成功-->
+    <!--    */-->
+    <!--    boolean updateScoreFirst(Map<String ,String> map);-->
+    <update id="updateScore">
+       UPDATE dept_evaluation_score
+    SET ability = #{ability},
+    activity = #{activity},
+    moral_quality = #{moralQuality},
+    disposition = #{disposition},
+    communication = #{communication}
+    where dateid=#{dateid}
+    AND stuid = #{stuid}
+    </update>
+
+    <!--    /**-->
+    <!--    * 保存转正评价-->
+    <!--    * @param deptEvaluationAll 实体类-->
+    <!--    * @return 是否成功-->
+    <!--    */-->
+    <!--    boolean updateAllScoreFirst(DeptEvaluationAll deptEvaluationAll);-->
+    <update id="updateAllScoreFirst">
+        update dept_evaluation_all set score0=#{score0},estimatedfirst=#{estimatedfirst}
+        where stuid=#{stuid}
+    </update>
+    <!--    /**-->
+    <!--    * 保存一年评价-->
+    <!--    * @param deptEvaluationAll 实体类-->
+    <!--    * @return 是否成功-->
+    <!--    */-->
+    <!--    boolean updateAllScoreOneYear(DeptEvaluationAll deptEvaluationAll);-->
+    <update id="updateAllScoreOneYear">
+        update dept_evaluation_all set score1=#{score1},estimatedone=#{estimatedone}
+        where stuid=#{stuid}
+    </update>
+    <!--    /**-->
+    <!--    * 保存三年评价-->
+    <!--    * @param deptEvaluationAll 实体类-->
+    <!--    * @return 是否成功-->
+    <!--    */-->
+    <!--    boolean updateAllScoreTwoYear(DeptEvaluationAll deptEvaluationAll);-->
+    <!--    /**-->
+    <update id="updateAllScoreTwoYear">
+        update dept_evaluation_all set score2=#{score2},estimatedtwo=#{estimatedtwo}
+        where stuid=#{stuid}
+    </update>
+    <!--    * 保存三年评价-->
+    <!--    * @param deptEvaluationAll 实体类-->
+    <!--    * @return 是否成功-->
+    <!--    */-->
+    <!--    boolean updateAllScoreThridYear(DeptEvaluationAll deptEvaluationAll);-->
+    <update id="updateAllScoreThridYear">
+        update dept_evaluation_all set score3=#{score3},estimatedthird=#{estimatedthird}
+        where stuid=#{stuid}
+    </update>
+    <!--    /**
+         * 查询分数
+         * @param stuid 学生id
+         * @param dateid  年限
+         * @return 成绩数据
+         */
+        Map<String ,String> selectEmpScore(@Param("stuid") String stuid,@Param("dateid") String dateid );-->
+    <select id="selectEmpScore" resultType="java.util.Map">
+    SELECT
+    ability,
+    activity,
+    moral_quality,
+    disposition,
+    communication,
+    score0,
+    score1,
+    score2,
+    score3,
+    estimatedfirst,
+    estimatedtwo,
+    estimatedone,
+    estimatedthird
+    FROM
+    dept_evaluation_score de
+    LEFT JOIN dept_evaluation_all da ON de.stuid = da.stuid
+    WHERE
+    de.stuid = #{stuid}
+    AND de.dateid = #{dateid}
+    </select>
+</mapper>
