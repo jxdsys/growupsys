@@ -25,6 +25,7 @@ public interface IDeptEvaluationAllService extends IService<DeptEvaluationAll> {
      */
     String getOneDept(String username);
     /**
+     *
      * 分页以评分学员信息
      * @param limit  条数
      * @param page 页码
@@ -66,6 +67,7 @@ public interface IDeptEvaluationAllService extends IService<DeptEvaluationAll> {
      */
     boolean updateAllScoreTwoYear(DeptEvaluationAll deptEvaluationAll);
     /**
+     * //
      * 保存三年评价
      * @param deptEvaluationAll 实体类
      * @return 是否成功
