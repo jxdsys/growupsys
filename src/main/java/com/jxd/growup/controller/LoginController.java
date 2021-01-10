@@ -49,8 +49,6 @@ public class LoginController {
             username = usernames[i]+username;
         }
 
-
-
         wrapper.eq("username",username);
         String password = usersService.getOne(wrapper).getPassword();
         Map<String,Object> map = new HashMap<>();

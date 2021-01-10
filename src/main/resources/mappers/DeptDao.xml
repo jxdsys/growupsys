@@ -8,4 +8,33 @@
         select deptid,dname,dcrib from dept
         where dname like concat('%',#{dname},'%')
     </select>
+<!--    /**
+     * 删除部门
+     * @param id 部门id
+     * @return 删除的状态
+     */
+    boolean delDeptById(@Param("deptid") int id);-->
+    <delete id="delDeptById" >
+    DELETE
+    FROM
+    dept
+    WHERE
+    deptid = #{deptid}
+    AND (
+    SELECT
+    count(stuid)
+    FROM
+    student
+    WHERE
+    deptno = #{deptid}
+    ) + (
+    SELECT
+    count(dept_appraid)
+    FROM
+    dept_appra
+    WHERE
+    deptid = #{deptid}
+    ) = 0
+    </delete>
+
 </mapper>

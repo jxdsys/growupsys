@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jxd.growup.dao.IDeptAppraDao;
 import com.jxd.growup.model.DeptAppra;
+import com.jxd.growup.model.Users;
 import com.jxd.growup.service.IDeptAppraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,15 @@ public class DeptAppraServiceImpl extends ServiceImpl<IDeptAppraDao, DeptAppra> 
         map.put("total",res.getTotal());
         map.put("pageCount",res.getPages());
         return map;
+    }
+
+    @Override
+    public int getMaxId() {
+        return deptAppraDao.getMaxId();
+    }
+
+    @Override
+    public boolean deUsersWithDeptAppra(List<Users> users) {
+        return deptAppraDao.deUsersWithDeptAppra(users);
     }
 }

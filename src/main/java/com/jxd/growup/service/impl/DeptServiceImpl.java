@@ -36,4 +36,10 @@ public class DeptServiceImpl extends ServiceImpl<IDeptDao, Dept> implements IDep
         map.put("pageCount",res.getPages());
         return map;
     }
+
+    @Override
+    public boolean delDeptById(int deptid ) {
+        return deptDao.delDeptById(deptid );
+    }
+
 }

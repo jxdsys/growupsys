@@ -18,4 +18,15 @@ public interface IDeptDao extends BaseMapper<Dept> {
      */
     IPage<Map<String ,Object >> selectDeptList(Page<Map<String ,Object >> page,
                                                @Param("dname") String ename);
+
+
+    /**
+     * 删除部门
+     * @param id 部门id
+     * @return 删除的状态
+     */
+    boolean delDeptById(@Param("deptid") int id);
+
+
+
 }

@@ -105,8 +105,8 @@ public class DeptAppraSetScoreController {
         int dateid = Integer.parseInt(scoreMap.get("dateid"));
         int score = Integer.parseInt(scoreMap.get("score"));
         int moralQuality = Integer.parseInt(scoreMap.get("moralQuality"));
-        int communication =Integer.parseInt(scoreMap.get("communication"));
-        String estimated =scoreMap.get("estimated");
+        int communication = Integer.parseInt(scoreMap.get("communication"));
+        String estimated = scoreMap.get("estimated");
         //封装成两个实体类
         DeptEvaluationScore deptEvaluationScore = new DeptEvaluationScore();
         deptEvaluationScore.setAbility(ability);
@@ -116,31 +116,31 @@ public class DeptAppraSetScoreController {
         deptEvaluationScore.setDisposition(disposition);
         deptEvaluationScore.setMoralQuality(moralQuality);
         deptEvaluationScore.setStuid(stuid);
-        DeptEvaluationAll deptEvaluationAll =new DeptEvaluationAll();
+        DeptEvaluationAll deptEvaluationAll = new DeptEvaluationAll();
         deptEvaluationAll.setStuid(stuid);
-        if (deptEvaluationAllService.updateScore(deptEvaluationScore)){
+        if (deptEvaluationAllService.updateScore(deptEvaluationScore)) {
             if (dateid == 0) {
                 deptEvaluationAll.setScore0(score);
                 deptEvaluationAll.setEstimatedfirst(estimated);
-                if (deptEvaluationAllService.updateAllScoreFirst(deptEvaluationAll)){
+                if (deptEvaluationAllService.updateAllScoreFirst(deptEvaluationAll)) {
                     return "success";
                 }
             } else if (dateid == 1) {
                 deptEvaluationAll.setScore1(score);
                 deptEvaluationAll.setEstimatedone(estimated);
-                if (deptEvaluationAllService.updateAllScoreOneYear(deptEvaluationAll)){
+                if (deptEvaluationAllService.updateAllScoreOneYear(deptEvaluationAll)) {
                     return "success";
                 }
             } else if (dateid == 2) {
                 deptEvaluationAll.setScore2(score);
                 deptEvaluationAll.setEstimatedtwo(estimated);
-                if (deptEvaluationAllService.updateAllScoreTwoYear(deptEvaluationAll)){
+                if (deptEvaluationAllService.updateAllScoreTwoYear(deptEvaluationAll)) {
                     return "success";
                 }
             } else if (dateid == 3) {
                 deptEvaluationAll.setScore3(score);
                 deptEvaluationAll.setEstimatedthird(estimated);
-                if (deptEvaluationAllService.updateAllScoreThridYear(deptEvaluationAll)){
+                if (deptEvaluationAllService.updateAllScoreThridYear(deptEvaluationAll)) {
                     return "success";
                 }
             }
@@ -149,12 +149,12 @@ public class DeptAppraSetScoreController {
     }
 
     @GetMapping("/selectEmpScore/{stuid}/{timeida}")
-    public Map<String ,Object > selectEmpscore(@PathVariable String stuid ,
-                                               @PathVariable String timeida){
-        Map<String ,String > map = new HashMap<>();
+    public Map<String, Object> selectEmpscore(@PathVariable String stuid,
+                                              @PathVariable String timeida) {
+        Map<String, String> map = new HashMap<>();
         int studentid = Integer.parseInt(stuid);
         int dateid = Integer.parseInt(timeida);
-        return deptEvaluationAllService.selectEmpScore(studentid,dateid);
+        return deptEvaluationAllService.selectEmpScore(studentid, dateid);
     }
 
 }
