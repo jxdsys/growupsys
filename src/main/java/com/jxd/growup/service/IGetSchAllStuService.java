@@ -53,7 +53,7 @@ public interface IGetSchAllStuService {
      * 获取某期所有学校评价人模块学生信息(分配部门)
      * @return
      */
-    Map<String,Object> getSchAllStuDistri(int limit, int page, String stuname,int termId);
+    Map<String,Object> getSchAllStuDistri(int limit, int page, String stuname,String termId);
 
 
 }

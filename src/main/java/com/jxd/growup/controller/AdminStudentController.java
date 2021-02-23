@@ -6,10 +6,7 @@ import com.jxd.growup.model.Score;
 import com.jxd.growup.model.Student;
 import com.jxd.growup.model.Term;
 import com.jxd.growup.model.Users;
-import com.jxd.growup.service.IScoreService;
-import com.jxd.growup.service.IStudentService;
-import com.jxd.growup.service.ITermService;
-import com.jxd.growup.service.IUsersService;
+import com.jxd.growup.service.*;
 import com.jxd.growup.service.ITermService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +32,8 @@ public class AdminStudentController {
     private IScoreService scoreService;
     @Autowired
     private ITermService termService;
-
+    @Autowired
+    private IDeptAppraService deptAppraService;
     /**
      * 查询学员信息
      * @param map
@@ -51,8 +49,7 @@ public class AdminStudentController {
         return mapStus;
     }
 
-    @Autowired
-    private ITermService termService;
+
     @PostMapping("/getAllTerm")
     public Map<String,Object> getAllTerm(){
         Map<String,Object> map = new HashMap<>();
@@ -67,11 +64,12 @@ public class AdminStudentController {
      * @return
      */
     @PostMapping("/addOrUpdStu")
-    public String addOrUpdStu(@RequestBody Map<String,Object> map){
+    public Map<String,String> addOrUpdStu(@RequestBody Map<String,Object> map){
         String stuid = map.get("stuid") == null ? "" : map.get("stuid").toString();
         String stuName = map.get("stuname") == null ? "" :  map.get("stuname").toString();
         String sex = map.get("sex") == null ? "" :  map.get("sex").toString();
         int termId = Integer.parseInt(map.get("termid") == null ? "" :  map.get("termid").toString());
+        Map<String,String> mapUser = new HashMap<>();
         if (stuid == ""){
             Term term = termService.getById(termId);
             Student student = new Student(stuName,sex,term.getTermId());
@@ -83,18 +81,24 @@ public class AdminStudentController {
             Boolean isScoreAdd = scoreService.save(score);
             boolean isUserAdd = usersService.save(users);
             if (isAdd == true && isUserAdd == true && isScoreAdd){
-                return "success";
+                mapUser.put("count","success");
+                mapUser.put("data",users.getUsername());
+                return mapUser;
             }else {
-                return "fail";
+                mapUser.put("count","fail");
+                return mapUser;
             }
         }else {
             int stuId = Integer.parseInt(stuid);
             Student student = new Student(stuId,stuName,sex,termId);
             boolean isUpd = studentService.updateById(student);
             if (isUpd = true){
-                return "success";
+                mapUser.put("count","success");
+                mapUser.put("data",stuid);
+                return mapUser;
             }else {
-                return "fail";
+                mapUser.put("count","success");
+                return mapUser;
             }
         }
 
@@ -126,7 +130,7 @@ public class AdminStudentController {
             list.add(users);
         };
         if (studentService.removeByIds(arrstuids)){
-
+            deptAppraService.deUsersWithDeptAppra(list);
             return "success";
         }else{
             return "fail";

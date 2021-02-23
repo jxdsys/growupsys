@@ -9,7 +9,7 @@
 <!--    */-->
 <!--    IPage<Map<String,Object>> getAllTerm(Page<Map<String,Object>> pages, @Param("tname") String tname);-->
         <select id="getAllTerm" resultType="java.util.Map">
-         select t.term_id,t.term_name,t.flag,t.sch_appra_id,sch.sch_appra_name,sch.state
+         select t.term_id,t.term_name,t.flag,t.sch_appra_id,t.sch_appra_name,sch.state
         from term t left join schoolappra sch on t.sch_appra_id=sch.sch_appra_id
         where t.term_name like concat('%',#{tname},'%') order by t.term_name
         </select>
@@ -39,7 +39,7 @@
 <!--    */-->
 <!--    boolean updSchAppra(int schAppraId);-->
     <update id="updSchAppra">
-        update term set sch_appra_id=#{schAppraId} where term_id=#{termid}
+        update term set sch_appra_id=#{schAppraId},sch_appra_name=#{schappraname} where term_id=#{termid}
     </update>
 <!--    /**-->
 <!--    * 学校评价人表中修改状态-->
@@ -53,6 +53,16 @@
 <!--        Map<String,Object> getBusyTerm(String flag);-->
     <select id="getBusyTerm" resultType="java.util.Map">
                 select term_id,term_name from term where flag = #{flag} and sch_appra_id is not null
+    </select>
+
+<!--    /**-->
+<!--    * 根据老师id查找老师姓名-->
+<!--    * @param schAppraId-->
+<!--    * @return-->
+<!--    */-->
+<!--    String selectTeacherName(int schAppraId);-->
+    <select id="selectTeacherName" resultType="String">
+        select sch_appra_name from schoolappra where sch_appra_id=#{schAppraId}
     </select>
 
 </mapper>

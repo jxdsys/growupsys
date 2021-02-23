@@ -32,7 +32,7 @@ public class StudentServiceImpl extends ServiceImpl<IStudentDao,Student> impleme
         Map<String,Object> map = new HashMap<>();
         //调用dao层获取数据
         if (termId == "" ){
-            IPage<Map<String,Object>> result = studentDao.selectStudentByPage(pages);
+            IPage<Map<String,Object>> result = studentDao.selectStudentByPage(pages,stuName);
             if (result!=null){
                 map.put("data",result.getRecords());
                 map.put("total",result.getTotal());

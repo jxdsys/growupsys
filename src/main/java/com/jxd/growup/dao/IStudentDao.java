@@ -22,6 +22,6 @@ public interface IStudentDao extends BaseMapper<Student> {
      * @param page
      * @return
      */
-   IPage<Map<String,Object>> selectStudentByPage(Page<Map<String,Object>> page);
+   IPage<Map<String,Object>> selectStudentByPage(Page<Map<String,Object>> page,@Param("stuName")String stuName);
 
 }

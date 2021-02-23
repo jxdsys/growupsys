@@ -108,12 +108,7 @@
     LEFT JOIN dept_appra da ON da.deptid = s.deptno
     WHERE
     s.stuid = #{stuid}
-    AND da.dept_appraid = (SELECT
-    dea.dept_appraid
-    FROM
-    dept_evaluation_all dea
-    WHERE
-    s.stuid = dea.stuid)
+    AND da.dept_appraid = #{userName}
     </select>
     <!--    /**-->
     <!--    * 保存转正成绩-->
@@ -195,8 +190,8 @@
     estimatedone,
     estimatedthird
     FROM
-    dept_evaluation_score de
-    LEFT JOIN dept_evaluation_all da ON de.stuid = da.stuid
+    dept_evaluation_all da
+    LEFT JOIN dept_evaluation_score de ON de.stuid = da.stuid
     WHERE
     de.stuid = #{stuid}
     AND de.dateid = #{dateid}

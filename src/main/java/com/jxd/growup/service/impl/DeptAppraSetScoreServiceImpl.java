@@ -12,7 +12,7 @@ public class DeptAppraSetScoreServiceImpl implements IDeptAppraSetScoreService {
     @Autowired
     private IDeptEvaluationScoreDao deptEvaluationScoreDao;
 
-
+    //查询分数
     @Override
     public Map<String, Object> getDeptEvaluationByThreeMScoreByStuid(int stuid) {
         return deptEvaluationScoreDao.getDeptEvaluationByThreeMScoreByStuid(stuid);
@@ -30,6 +30,6 @@ public class DeptAppraSetScoreServiceImpl implements IDeptAppraSetScoreService {
 
     @Override
     public Map<String, Object> getDeptEvaluationByThreeScoreByStuid(int stuid) {
-        return deptEvaluationScoreDao.getDeptEvaluationByThreeMScoreByStuid(stuid);
+        return deptEvaluationScoreDao.getDeptEvaluationByThreeScoreByStuid(stuid);
     }
 }

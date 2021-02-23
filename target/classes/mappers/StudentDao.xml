@@ -11,7 +11,7 @@
 <!--       IPage<Map<String,Object>> selectStudentByPage(Page<Map<String,Object>> page);-->
     <select id="selectStudentByPage" resultType="java.util.Map">
         SELECT s.stuid,s.stuname,s.sex,t.term_name FROM
-         student s left join term t on  s.termid = t.term_id
+         student s left join term t on  s.termid = t.term_id where stuname like '%' #{stuName} '%'
     </select>
 
 </mapper>

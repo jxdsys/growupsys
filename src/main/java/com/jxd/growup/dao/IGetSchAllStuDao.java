@@ -60,7 +60,7 @@ public interface IGetSchAllStuDao {
      * 获取某期所有学校评价人模块学生信息(分配部门)
      * @return
      */
-    IPage<Map<String,Object>> getSchAllStuDistri(Page<Map<String,Object>> pages, @Param("stuname") String stuname,@Param("termid") int termId);
+    IPage<Map<String,Object>> getSchAllStuDistri(Page<Map<String,Object>> pages, @Param("stuname") String stuname,@Param("termid") String termId);
 
 
 }

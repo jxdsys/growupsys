@@ -44,8 +44,8 @@ public class AdminTermServiceImpl extends ServiceImpl<IAdmintermDao, Term> imple
     }
 
     @Override
-    public boolean updSchAppra(int schAppraId,int termId) {
-        return admintermDao.updSchAppra(schAppraId,termId);
+    public boolean updSchAppra(int schAppraId,int termId,String schappraname) {
+        return admintermDao.updSchAppra(schAppraId,termId,schappraname);
     }
 
     @Override
@@ -56,5 +56,10 @@ public class AdminTermServiceImpl extends ServiceImpl<IAdmintermDao, Term> imple
     @Override
     public List<Map<String, Object>> getBusyTerm(String flag) {
         return admintermDao.getBusyTerm(flag);
+    }
+
+    @Override
+    public String selectTeacherName(int schAppraId) {
+        return admintermDao.selectTeacherName(schAppraId);
     }
 }

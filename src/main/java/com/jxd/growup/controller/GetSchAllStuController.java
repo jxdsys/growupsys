@@ -2,10 +2,8 @@ package com.jxd.growup.controller;
 
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.jxd.growup.dao.IGetTermidDistrStuDao;
 import com.jxd.growup.model.*;
 import com.jxd.growup.service.*;
-import com.jxd.growup.service.impl.SchoolGetStuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +21,7 @@ public class GetSchAllStuController {
     @Autowired
     private ISchoolGetStuService schoolGetStuService;
     @Autowired
-    private IinsertStuScoreService iinsertStuScoreService;
+    private IInsertStuScoreService iinsertStuScoreService;
     @Autowired
     private IGetTermidDistrStuService getTermidDistrStuService;
     @Autowired
@@ -56,7 +54,7 @@ public class GetSchAllStuController {
     }
 
     /**
-     * 获取该老师所教授的所有班期(学校评价功能模块)
+     * 获取该老师所教授的所有班期(班期下拉框)(学校评价功能模块)
      *
      * @return
      */
@@ -227,13 +225,14 @@ public class GetSchAllStuController {
         int page = Integer.parseInt(queryMap.get("page"));
         String stuname = queryMap.get("filter") == null ? "" : queryMap.get("filter");
         String userName = queryMap.get("userName") == null ? "" : queryMap.get("userName");
-        String termids = getTermidDistrStu(userName);
-        int termid = Integer.parseInt(termids);
+        String termid = getTermidDistrStu(userName);
+        //int termid = Integer.parseInt(termids);
         return schAllStuService.getSchAllStuDistri(limit, page, stuname, termid);
     }
 
 
     //获取部门评价人信息
+    //部门的获取用的是DeptController中的(/getDept)
     @GetMapping("/getDeptAppraToSch/{deptid}")
     public List<DeptAppra> getDeptAppraToSch(@PathVariable String deptid) {
         AbstractWrapper wrapper = new QueryWrapper();
@@ -253,6 +252,7 @@ public class GetSchAllStuController {
     public String insertInfoSchtoDept(@PathVariable String stuid, @PathVariable String deptid, @PathVariable String deptAppraid) {
         insertInfoSchtoDeptService.updStuSchtoDept(stuid, deptid);
         insertInfoSchtoDeptService.insertStuSchtoDept(stuid, deptAppraid);
+
         List<DeptEvaluationScore> list = new ArrayList<>();
         DeptEvaluationScore deptEvaluationScore = new DeptEvaluationScore();
         DeptEvaluationScore deptEvaluationScore2 = new DeptEvaluationScore();

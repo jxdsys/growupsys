@@ -69,7 +69,7 @@ public class GetSchAllStuServiceImpl implements IGetSchAllStuService {
     }
 
     @Override
-    public Map<String, Object> getSchAllStuDistri(int limit,int page,String stuname,int termId) {
+    public Map<String, Object> getSchAllStuDistri(int limit,int page,String stuname,String termId) {
         //构造分页对象
         Page<Map<String,Object>> pages = new Page<>(page,limit);
         //将分页对象传递到dao层

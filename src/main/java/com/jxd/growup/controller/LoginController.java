@@ -37,12 +37,14 @@ public class LoginController {
         String password = map.get("password") == null ? "" : map.get("password");
         Map<String,Object> mapLogin = new HashMap<>();
         if (loginService.getLogin(name,password) != null){
+
+
             mapLogin.put("data",loginService.getLogin(name,password));
             mapLogin.put("status","200");
             return mapLogin;
         }else {
             mapLogin.put("data","");
-            mapLogin.put("status","500");
+           // mapLogin.put("status","500");
             return mapLogin;
         }
     }
@@ -76,10 +78,11 @@ public class LoginController {
      */
     @PostMapping("/updPwd")
     public String updPwd(@RequestBody Map<String,Object> map ){
-        String username = map.get("userName").toString();
-        String password = map.get("pass").toString();
-        int userid = Integer.parseInt(map.get("userid").toString());
-        Users users = new Users(userid,username,password);
+        String username = map.get("userName").toString() == ""? "" : map.get("userName").toString();
+        String password = map.get("pass").toString() ==""? "" : map.get("pass").toString();
+        int userid = Integer.parseInt(map.get("userid").toString() == "" ? "" :map.get("userid").toString());
+        int role = Integer.parseInt(map.get("role").toString() == "" ? "" :map.get("role").toString());
+        Users users = new Users(userid,username,password,role);
         if (usersService.updateById(users)){
             return "success";
         }else {

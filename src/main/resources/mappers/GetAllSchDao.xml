@@ -3,7 +3,7 @@
 <mapper namespace="com.jxd.growup.dao.IGetSchAllStuDao">
 
 <!--    /**-->
-<!--    * 获取所有学校评价人信息-->
+<!--    * 获取所有学生信息-->
 <!--    * @return-->
 <!--    */-->
 <!--    IPage<Map<String,Object>> getSchAllStu(Page<Map<String,Object>> pages, @Param("stuname") String stuname,@Param("termid") int termId);-->

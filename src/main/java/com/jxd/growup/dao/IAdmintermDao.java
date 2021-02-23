@@ -35,7 +35,7 @@ public interface IAdmintermDao extends BaseMapper<Term> {
      * @param schAppraId
      * @return
      */
-    boolean updSchAppra(@Param("schAppraId") int schAppraId,@Param("termid") int termId);
+    boolean updSchAppra(@Param("schAppraId") int schAppraId,@Param("termid") int termId,@Param("schappraname")String schappraname);
 
     /**
      * 学校评价人表中修改状态
@@ -51,6 +51,13 @@ public interface IAdmintermDao extends BaseMapper<Term> {
      * @return
      */
     List<Map<String,Object>> getBusyTerm(String flag);
+
+    /**
+     * 根据老师id查找老师姓名
+     * @param schAppraId
+     * @return
+     */
+    String selectTeacherName(int schAppraId);
 
 
 

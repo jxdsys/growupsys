@@ -28,8 +28,8 @@ public class AdminTermController {
      * 获取所有班期信息
      * @return 班期信息集合
      */
-    @PostMapping("/getAllTerm")
-    public Map<String,Object> getAllTerm(){
+    @PostMapping("/getAllTerms")
+    public Map<String,Object> getAllTerms(){
         Map<String,Object> map = new HashMap<>();
         map.put("data",termService.listMaps());
         map.put("code","200");
@@ -68,24 +68,36 @@ public class AdminTermController {
     }
 
     /**
-     * 新增员工
+     * 新增班期
      * @return
      */
     @PostMapping("/addTerm")
     public String addTerm() {
-        String termnames = (Integer.parseInt(adminTermService.getLastTerm()) + 1) + "";
-        String front = "0";
-        String termname = front.concat(termnames);
-        //System.out.println(termname);
-        if (adminTermService.addTerm(termname)) {
-            return "success";
-        } else {
-            return "fail";
+        //如果班期表中没有数据则走这个方法
+        String tname = adminTermService.getLastTerm() == null ? "" : adminTermService.getLastTerm();
+        if (tname==""){
+            String front = "0";
+            String termname = front.concat("1");
+            if (adminTermService.addTerm(termname)) {
+                return "success";
+            } else {
+                return "fail";
+            }
+        }else {
+            String termnames = (Integer.parseInt(adminTermService.getLastTerm()) + 1) + "";
+            String front = "0";
+            String termname = front.concat(termnames);
+            if (adminTermService.addTerm(termname)) {
+                return "success";
+            } else {
+                return "fail";
+            }
         }
+
     }
 
     /**
-     * 得到选中该条的数据(维护班期功能)
+     * 点击分配老师，得到选中该条的数据(维护班期功能)
      *
      * @param term_id
      * @return
@@ -110,15 +122,17 @@ public class AdminTermController {
     }
 
     /**
-     * 修改老师状态,分配老师(维护班期功能)
+     * 分配老师后，修改老师状态(维护班期功能)
      *
      * @param
      * @return
      */
     @GetMapping("/addAppra/{schAppraId}/{termId}")
     public String addAppra(@PathVariable int schAppraId,@PathVariable int termId) {
-        //System.out.println(termId);
-        boolean flag = adminTermService.updSchAppra(schAppraId,termId);
+        //将老师id和名字插入到term表中
+        String schappraname = adminTermService.selectTeacherName(schAppraId);
+        boolean flag = adminTermService.updSchAppra(schAppraId,termId,schappraname);
+        //修改老师状态--》忙碌
         boolean isState = adminTermService.updTermState(schAppraId);
         if (flag && isState) {
             return "success";

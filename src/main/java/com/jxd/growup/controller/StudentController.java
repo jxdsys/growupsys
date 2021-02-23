@@ -55,7 +55,7 @@ public class StudentController {
     @PostMapping(value="uploadImg",produces = "text/html;charset=utf-8")
     public String upload(@RequestParam("file1") MultipartFile imgfile) {
         //指定存储路径
-        String savePath = "D:\\img";
+        String savePath = "E:\\workspaces\\threegroup\\web-growsys\\src\\assets\\img";
         //创建存储文件夹
         //创建文件对象
         File file = new File(savePath);

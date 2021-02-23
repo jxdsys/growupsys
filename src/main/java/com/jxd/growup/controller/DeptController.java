@@ -68,7 +68,7 @@ public class DeptController {
         if(deptAppraService.save(deptAppra)){
             Users users = new Users();
             users.setRole(3);
-            users.setPassword("123");
+            users.setPassword("123456");
             String  id = String.valueOf(deptAppraService.getMaxId());
             users.setUsername(id);
             if (usersService.save(users)){
@@ -95,8 +95,9 @@ public class DeptController {
                 users.setUsername(dept_appraids.get(i)+"");
                 list.add(users);
                 //删除userbaiozhong1
-                deptAppraService.deUsersWithDeptAppra(list);
+
             }
+            deptAppraService.deUsersWithDeptAppra(list);
             return "success";
         }else{
             return "fail";
@@ -138,7 +139,7 @@ public class DeptController {
         }
     }
     //批量删除部门
-    // 不运行
+    // 不运行//不执行
     @PostMapping("/delBatchDept")
     public String delBatchDept(@RequestBody List<Integer> deptids){
         if(deptService.removeByIds(deptids)){

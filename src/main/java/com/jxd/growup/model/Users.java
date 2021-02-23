@@ -86,11 +86,12 @@ public class Users {
      * @param userid
      * @param username
      * @param password
+     * @param role
      */
-    public Users(int userid, String username, String password) {
+    public Users(int userid, String username, String password, int role) {
         this.userid = userid;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
-
 }

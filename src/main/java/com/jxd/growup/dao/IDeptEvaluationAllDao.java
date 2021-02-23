@@ -43,7 +43,7 @@ public interface IDeptEvaluationAllDao extends BaseMapper<DeptEvaluationAll> {
      * @param stuid
      * @return
      */
-    Map<String ,String> getEmpDeptInfoById(String stuid);
+    Map<String ,String> getEmpDeptInfoById(String stuid,String userName);
 
     /**
      * 保存成绩
@@ -82,8 +82,8 @@ public interface IDeptEvaluationAllDao extends BaseMapper<DeptEvaluationAll> {
     /**
      * 查询分数
      * @param stuid 学生id
-     * @param timeida 年限
+     * @param timeid 年限
      * @return 成绩数据
      */
-    Map<String ,Object> selectEmpScore(@Param("stuid") int stuid,@Param("dateid") int timeida );
+    Map<String ,Object> selectEmpScore(@Param("stuid") int stuid,@Param("dateid") int timeid );
 }

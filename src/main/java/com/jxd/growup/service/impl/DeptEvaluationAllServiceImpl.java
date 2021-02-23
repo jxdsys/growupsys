@@ -60,10 +60,10 @@ public class DeptEvaluationAllServiceImpl extends ServiceImpl<IDeptEvaluationAll
     }
 
     @Override
-    public Map<String, String> getEmpDeptInfoById(String stuid) {
-        return deptEvaluationAllDao.getEmpDeptInfoById(stuid);
+    public Map<String, String> getEmpDeptInfoById(String stuid,String userName) {
+        return deptEvaluationAllDao.getEmpDeptInfoById(stuid,userName);
     }
-
+    //保存分数
     @Override
     public boolean updateScore(DeptEvaluationScore deptEvaluationScore) {
         return deptEvaluationAllDao.updateScore(deptEvaluationScore);
@@ -88,10 +88,10 @@ public class DeptEvaluationAllServiceImpl extends ServiceImpl<IDeptEvaluationAll
     public boolean updateAllScoreThridYear(DeptEvaluationAll deptEvaluationAll) {
         return deptEvaluationAllDao.updateAllScoreThridYear(deptEvaluationAll);
     }
-
+    //查询分数
     @Override
-    public Map<String,Object> selectEmpScore(int stuid,int timeida) {
-        return deptEvaluationAllDao.selectEmpScore(stuid, timeida);
+    public Map<String,Object> selectEmpScore(int stuid,int timeid) {
+        return deptEvaluationAllDao.selectEmpScore(stuid, timeid);
     }
 
 }

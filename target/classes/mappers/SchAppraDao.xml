@@ -25,7 +25,7 @@
 <!--    */-->
 <!--    boolean insertToUsers(String schappraid);-->
     <insert id="insertToUsers">
-        insert into users(username,password,role) values(#{schappraid},123,2)
+        insert into users(username,password,role) values(#{schappraid},123456,2)
     </insert>
 
 <!--    /**-->

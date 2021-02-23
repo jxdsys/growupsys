@@ -31,7 +31,7 @@ public interface IAdminTermService extends IService<Term> {
      * @param schAppraId
      * @return
      */
-    boolean updSchAppra(int schAppraId,int termId);
+    boolean updSchAppra(int schAppraId,int termId,String schappraname);
     /**
      * 学校评价人表中修改状态
      * @param schAppraId
@@ -44,4 +44,10 @@ public interface IAdminTermService extends IService<Term> {
      * @return
      */
     List<Map<String,Object>> getBusyTerm(String flag);
+    /**
+     * 根据老师id查找老师姓名
+     * @param schAppraId
+     * @return
+     */
+    String selectTeacherName(int schAppraId);
 }
